@@ -54,6 +54,19 @@
       display: flex; align-items: center; justify-content: center;
       font-size: 16px;
     }
+    .nav-right { display: flex; align-items: center; gap: 10px; }
+    .lang-toggle {
+      background: var(--elevated);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--t2);
+      font-size: 12px; font-weight: 700;
+      padding: 7px 12px;
+      cursor: pointer;
+      transition: all .2s;
+      display: flex; align-items: center; gap: 5px;
+    }
+    .lang-toggle:hover { background: var(--border); color: var(--t1); }
     .nav-cta {
       background: var(--primary);
       color: #fff; font-weight: 700; font-size: 13px;
@@ -129,7 +142,6 @@
     }
     .btn-secondary:hover { background: var(--elevated); color: var(--t1); }
 
-    /* ── FORMATS ── */
     .formats {
       display: flex; align-items: center; justify-content: center; gap: 8px;
       margin-top: 48px; flex-wrap: wrap;
@@ -160,23 +172,17 @@
       max-width: 520px; margin: 0 auto 56px;
     }
 
-    /* ── HOW IT WORKS ── */
+    /* ── STEPS ── */
     .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
     .step {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 28px;
-      transition: border-color .2s;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 14px; padding: 28px; transition: border-color .2s;
     }
     .step:hover { border-color: #3d3d5c; }
     .step-num {
-      width: 36px; height: 36px;
-      background: var(--primary);
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 15px; font-weight: 900; color: #fff;
-      margin-bottom: 16px;
+      width: 36px; height: 36px; background: var(--primary);
+      border-radius: 10px; display: flex; align-items: center; justify-content: center;
+      font-size: 15px; font-weight: 900; color: #fff; margin-bottom: 16px;
     }
     .step h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
     .step p  { font-size: 14px; color: var(--t2); line-height: 1.7; }
@@ -184,19 +190,13 @@
     /* ── FEATURES ── */
     .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
     .feature {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 24px;
-      display: flex; gap: 16px;
-      transition: border-color .2s;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 14px; padding: 24px; display: flex; gap: 16px; transition: border-color .2s;
     }
     .feature:hover { border-color: #3d3d5c; }
     .feature-icon {
-      font-size: 24px; flex-shrink: 0;
-      width: 44px; height: 44px;
-      background: rgba(124,58,237,.1);
-      border-radius: 10px;
+      font-size: 24px; flex-shrink: 0; width: 44px; height: 44px;
+      background: rgba(124,58,237,.1); border-radius: 10px;
       display: flex; align-items: center; justify-content: center;
     }
     .feature h3 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
@@ -204,17 +204,12 @@
 
     /* ── PRICING ── */
     .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
-      max-width: 720px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px; max-width: 720px; margin: 0 auto;
     }
     .plan {
-      background: var(--surface);
-      border: 2px solid var(--border);
-      border-radius: 18px;
-      padding: 32px;
-      position: relative;
+      background: var(--surface); border: 2px solid var(--border);
+      border-radius: 18px; padding: 32px; position: relative;
     }
     .plan.featured {
       border-color: var(--primary);
@@ -222,11 +217,9 @@
     }
     .plan-badge {
       position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
-      background: var(--primary);
-      color: #fff; font-size: 11px; font-weight: 800;
-      padding: 3px 14px; border-radius: 20px;
-      letter-spacing: .5px; text-transform: uppercase;
-      white-space: nowrap;
+      background: var(--primary); color: #fff; font-size: 11px; font-weight: 800;
+      padding: 3px 14px; border-radius: 20px; letter-spacing: .5px;
+      text-transform: uppercase; white-space: nowrap;
     }
     .plan-name { font-size: 13px; font-weight: 700; color: var(--t3); text-transform: uppercase; letter-spacing: .8px; margin-bottom: 12px; }
     .plan-price { font-size: 42px; font-weight: 900; letter-spacing: -1.5px; margin-bottom: 4px; }
@@ -236,56 +229,56 @@
     .plan-features li { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--t2); }
     .plan-features li::before { content: '✓'; color: var(--success); font-weight: 800; flex-shrink: 0; }
     .plan-btn {
-      display: block; text-align: center;
-      background: var(--primary);
+      display: block; text-align: center; background: var(--primary);
       color: #fff; font-weight: 700; font-size: 14px;
-      padding: 13px; border-radius: 10px;
-      text-decoration: none;
-      transition: background .2s, transform .15s;
+      padding: 13px; border-radius: 10px; text-decoration: none; transition: background .2s, transform .15s;
     }
     .plan.featured .plan-btn:hover { background: var(--primary2); transform: translateY(-1px); }
     .plan:not(.featured) .plan-btn {
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--t2);
+      background: transparent; border: 1px solid var(--border); color: var(--t2);
     }
     .plan:not(.featured) .plan-btn:hover { background: var(--elevated); color: var(--t1); }
-
-    .free-note {
-      text-align: center; margin-top: 28px;
-      font-size: 14px; color: var(--t3);
-    }
+    .free-note { text-align: center; margin-top: 28px; font-size: 14px; color: var(--t3); }
     .free-note strong { color: var(--t2); }
 
     /* ── LANGUAGES ── */
-    .lang-grid {
-      display: flex; flex-wrap: wrap; gap: 10px;
-      justify-content: center;
-    }
+    .lang-grid { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
     .lang-chip {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 8px 16px;
-      font-size: 13px; color: var(--t2);
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px; padding: 8px 16px; font-size: 13px; color: var(--t2);
     }
+
+    /* ── OTHER PROJECTS ── */
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .project-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 14px; padding: 24px; text-decoration: none; color: var(--t1);
+      display: flex; flex-direction: column; gap: 10px;
+      transition: border-color .2s, transform .15s;
+    }
+    .project-card:hover { border-color: #3d3d5c; transform: translateY(-2px); }
+    .project-card-header { display: flex; align-items: center; gap: 12px; }
+    .project-card-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0;
+    }
+    .project-card h3 { font-size: 16px; font-weight: 700; }
+    .project-card p { font-size: 13px; color: var(--t2); line-height: 1.6; }
+    .project-card-url { font-size: 12px; color: var(--primary); margin-top: 4px; }
 
     /* ── CTA ── */
     .cta-section {
       text-align: center;
       background: linear-gradient(135deg, rgba(124,58,237,.12) 0%, rgba(59,130,246,.08) 100%);
-      border: 1px solid rgba(124,58,237,.2);
-      border-radius: 24px;
-      padding: 72px 24px;
-      margin: 0 24px 80px;
+      border: 1px solid rgba(124,58,237,.2); border-radius: 24px;
+      padding: 72px 24px; margin: 0 24px 80px;
     }
     .cta-section h2 { font-size: clamp(28px, 4vw, 40px); font-weight: 900; letter-spacing: -1px; margin-bottom: 14px; }
     .cta-section p  { color: var(--t2); font-size: 16px; margin-bottom: 36px; }
 
     /* ── FOOTER ── */
     footer {
-      border-top: 1px solid var(--border);
-      padding: 28px 24px;
+      border-top: 1px solid var(--border); padding: 28px 24px;
       display: flex; align-items: center; justify-content: space-between;
       flex-wrap: wrap; gap: 12px;
       max-width: 1100px; margin: 0 auto;
@@ -309,50 +302,49 @@
     <div class="nav-logo-icon">⚡</div>
     Hookify
   </a>
-  <a class="nav-cta" href="#pricing">Get Started Free</a>
+  <div class="nav-right">
+    <button class="lang-toggle" id="langBtn" onclick="toggleLang()">🌐 TR</button>
+    <a class="nav-cta" href="#pricing" data-i18n="nav_cta">Get Started Free</a>
+  </div>
 </nav>
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-badge">⚡ AI-Powered Chrome Extension</div>
-  <h1>Turn Any Text Into<br><span>Social Media Content</span><br>In One Click</h1>
-  <p class="hero-sub">Paste any text — LinkedIn post, Twitter thread, or Instagram caption is ready in seconds. Powered by GPT-4o mini.</p>
+  <div class="hero-badge" data-i18n="hero_badge">⚡ AI-Powered Chrome Extension</div>
+  <h1 data-i18n="hero_h1">Turn Any Text Into<br><span data-i18n="hero_h1_span">Social Media Content</span><br>In One Click</h1>
+  <p class="hero-sub" data-i18n="hero_sub">Paste any text — LinkedIn post, Twitter thread, or Instagram caption is ready in seconds. Powered by GPT-4o mini.</p>
   <div class="hero-btns">
-    <a class="btn-primary" href="#pricing">
-      🚀 Start Free — 5 conversions
-    </a>
-    <a class="btn-secondary" href="mailto:aydinticaret00@gmail.com">
-      Contact Us
-    </a>
+    <a class="btn-primary" href="#pricing" data-i18n="hero_btn1">🚀 Start Free — 5 conversions</a>
+    <a class="btn-secondary" href="mailto:aydinticaret00@gmail.com" data-i18n="hero_btn2">Contact Us</a>
   </div>
   <div class="formats">
     <div class="fmt-chip">💼 LinkedIn Post</div>
     <div class="fmt-chip">🐦 Twitter Thread</div>
     <div class="fmt-chip">📸 Instagram Caption</div>
-    <div class="fmt-chip">🌐 10 Languages</div>
+    <div class="fmt-chip" data-i18n="fmt_lang">🌐 10 Languages</div>
   </div>
 </div>
 
 <!-- HOW IT WORKS -->
 <section id="how">
-  <div class="section-label">How It Works</div>
-  <h2 class="section-title">Three steps to great content</h2>
-  <p class="section-sub">No learning curve. Just paste, pick, and convert.</p>
+  <div class="section-label" data-i18n="how_label">How It Works</div>
+  <h2 class="section-title" data-i18n="how_title">Three steps to great content</h2>
+  <p class="section-sub" data-i18n="how_sub">No learning curve. Just paste, pick, and convert.</p>
   <div class="steps">
     <div class="step">
       <div class="step-num">1</div>
-      <h3>Paste Your Text</h3>
-      <p>Copy any raw text — a blog post, email, article, or rough notes. Paste it into Hookify.</p>
+      <h3 data-i18n="step1_h">Paste Your Text</h3>
+      <p data-i18n="step1_p">Copy any raw text — a blog post, email, article, or rough notes. Paste it into Hookify.</p>
     </div>
     <div class="step">
       <div class="step-num">2</div>
-      <h3>Choose Format & Language</h3>
-      <p>Select LinkedIn, Twitter, or Instagram. Pick your output language from 10 supported languages.</p>
+      <h3 data-i18n="step2_h">Choose Format & Language</h3>
+      <p data-i18n="step2_p">Select LinkedIn, Twitter, or Instagram. Pick your output language from 10 supported languages.</p>
     </div>
     <div class="step">
       <div class="step-num">3</div>
-      <h3>Copy & Post</h3>
-      <p>AI rewrites your text into a platform-perfect format. Copy with one click and post directly.</p>
+      <h3 data-i18n="step3_h">Copy & Post</h3>
+      <p data-i18n="step3_p">AI rewrites your text into a platform-perfect format. Copy with one click and post directly.</p>
     </div>
   </div>
 </section>
@@ -360,51 +352,33 @@
 <!-- FEATURES -->
 <section id="features" style="background: var(--surface); max-width: 100%; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
   <div style="max-width: 1100px; margin: 0 auto;">
-    <div class="section-label">Features</div>
-    <h2 class="section-title">Everything you need</h2>
-    <p class="section-sub">Built for creators, marketers, and teams who publish content every day.</p>
+    <div class="section-label" data-i18n="feat_label">Features</div>
+    <h2 class="section-title" data-i18n="feat_title">Everything you need</h2>
+    <p class="section-sub" data-i18n="feat_sub">Built for creators, marketers, and teams who publish content every day.</p>
     <div class="features">
       <div class="feature">
         <div class="feature-icon">🤖</div>
-        <div>
-          <h3>GPT-4o Mini Powered</h3>
-          <p>Industry-leading AI understands context and writes in your voice — not generic robot text.</p>
-        </div>
+        <div><h3>GPT-4o Mini</h3><p data-i18n="feat1_p">Industry-leading AI understands context and writes in your voice — not generic robot text.</p></div>
       </div>
       <div class="feature">
         <div class="feature-icon">🌐</div>
-        <div>
-          <h3>10 Languages</h3>
-          <p>Convert content in English, Turkish, Spanish, French, Arabic, Chinese, Hindi, Portuguese, Russian, and Japanese.</p>
-        </div>
+        <div><h3 data-i18n="feat2_h">10 Languages</h3><p data-i18n="feat2_p">English, Turkish, Spanish, French, Arabic, Chinese, Hindi, Portuguese, Russian, and Japanese.</p></div>
       </div>
       <div class="feature">
         <div class="feature-icon">⚡</div>
-        <div>
-          <h3>Instant Results</h3>
-          <p>Get your converted content in under 5 seconds. No waiting, no tabs, no copy-pasting between apps.</p>
-        </div>
+        <div><h3 data-i18n="feat3_h">Instant Results</h3><p data-i18n="feat3_p">Get your converted content in under 5 seconds. No waiting, no extra tabs.</p></div>
       </div>
       <div class="feature">
         <div class="feature-icon">🐦</div>
-        <div>
-          <h3>Twitter Auto-Fetch</h3>
-          <p>On Twitter/X? Click one button to auto-import the tweet text directly into Hookify.</p>
-        </div>
+        <div><h3 data-i18n="feat4_h">Twitter Auto-Fetch</h3><p data-i18n="feat4_p">On Twitter/X? One button auto-imports the tweet text directly into Hookify.</p></div>
       </div>
       <div class="feature">
         <div class="feature-icon">🔒</div>
-        <div>
-          <h3>Secure & Private</h3>
-          <p>Your text goes through our encrypted proxy. No data stored, no tracking, no selling your content.</p>
-        </div>
+        <div><h3 data-i18n="feat5_h">Secure & Private</h3><p data-i18n="feat5_p">Encrypted proxy. No data stored, no tracking, no selling your content.</p></div>
       </div>
       <div class="feature">
         <div class="feature-icon">💼</div>
-        <div>
-          <h3>Multi-Device License</h3>
-          <p>One license covers up to 3 devices (Personal) or 10 devices (Corporate) — perfect for teams.</p>
-        </div>
+        <div><h3 data-i18n="feat6_h">Multi-Device License</h3><p data-i18n="feat6_p">One license covers up to 3 devices (Personal) or 10 devices (Corporate).</p></div>
       </div>
     </div>
   </div>
@@ -412,82 +386,220 @@
 
 <!-- LANGUAGES -->
 <section id="languages">
-  <div class="section-label">Language Support</div>
-  <h2 class="section-title">Write for a global audience</h2>
-  <p class="section-sub">Input your text in any language, output in the language your audience speaks.</p>
+  <div class="section-label" data-i18n="lang_label">Language Support</div>
+  <h2 class="section-title" data-i18n="lang_title">Write for a global audience</h2>
+  <p class="section-sub" data-i18n="lang_sub">Input in any language, output in the language your audience speaks.</p>
   <div class="lang-grid">
-    <div class="lang-chip">🇹🇷 Turkish</div>
+    <div class="lang-chip">🇹🇷 Türkçe</div>
     <div class="lang-chip">🇬🇧 English</div>
-    <div class="lang-chip">🇪🇸 Spanish</div>
-    <div class="lang-chip">🇫🇷 French</div>
-    <div class="lang-chip">🇸🇦 Arabic</div>
-    <div class="lang-chip">🇨🇳 Chinese</div>
-    <div class="lang-chip">🇮🇳 Hindi</div>
-    <div class="lang-chip">🇧🇷 Portuguese</div>
-    <div class="lang-chip">🇷🇺 Russian</div>
-    <div class="lang-chip">🇯🇵 Japanese</div>
+    <div class="lang-chip">🇪🇸 Español</div>
+    <div class="lang-chip">🇫🇷 Français</div>
+    <div class="lang-chip">🇸🇦 العربية</div>
+    <div class="lang-chip">🇨🇳 中文</div>
+    <div class="lang-chip">🇮🇳 हिंदी</div>
+    <div class="lang-chip">🇧🇷 Português</div>
+    <div class="lang-chip">🇷🇺 Русский</div>
+    <div class="lang-chip">🇯🇵 日本語</div>
   </div>
 </section>
 
 <!-- PRICING -->
 <section id="pricing" style="background: var(--surface); max-width: 100%; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
   <div style="max-width: 1100px; margin: 0 auto;">
-    <div class="section-label">Pricing</div>
-    <h2 class="section-title">Simple, honest pricing</h2>
-    <p class="section-sub">Start free. Upgrade when you need more.</p>
+    <div class="section-label" data-i18n="price_label">Pricing</div>
+    <h2 class="section-title" data-i18n="price_title">Simple, honest pricing</h2>
+    <p class="section-sub" data-i18n="price_sub">Start free. Upgrade when you need more.</p>
     <div class="pricing-grid">
       <div class="plan">
-        <div class="plan-name">Personal</div>
-        <div class="plan-price">₺149<span>/mo</span></div>
-        <div class="plan-desc">For individual creators and freelancers</div>
+        <div class="plan-name" data-i18n="plan1_name">Personal</div>
+        <div class="plan-price">₺149<span data-i18n="per_mo">/mo</span></div>
+        <div class="plan-desc" data-i18n="plan1_desc">For individual creators and freelancers</div>
         <ul class="plan-features">
-          <li>20 AI conversions per day</li>
-          <li>Up to 3 devices</li>
-          <li>All 3 formats</li>
-          <li>10 output languages</li>
-          <li>Twitter auto-fetch</li>
+          <li data-i18n="plan1_f1">20 AI conversions per day</li>
+          <li data-i18n="plan1_f2">Up to 3 devices</li>
+          <li data-i18n="plan_f3">All 3 formats</li>
+          <li data-i18n="plan_f4">10 output languages</li>
+          <li data-i18n="plan_f5">Twitter auto-fetch</li>
         </ul>
-        <a class="plan-btn" href="#" id="buyLinkPers">Get Personal</a>
+        <a class="plan-btn" href="#" id="buyLinkPers" data-i18n="plan1_btn">Get Personal</a>
       </div>
       <div class="plan featured">
-        <div class="plan-badge">Most Popular</div>
-        <div class="plan-name">Corporate</div>
-        <div class="plan-price">₺399<span>/mo</span></div>
-        <div class="plan-desc">For teams, agencies, and businesses</div>
+        <div class="plan-badge" data-i18n="popular">Most Popular</div>
+        <div class="plan-name" data-i18n="plan2_name">Corporate</div>
+        <div class="plan-price">₺399<span data-i18n="per_mo2">/mo</span></div>
+        <div class="plan-desc" data-i18n="plan2_desc">For teams, agencies, and businesses</div>
         <ul class="plan-features">
-          <li>100 AI conversions per day</li>
-          <li>Up to 10 devices</li>
-          <li>All 3 formats</li>
-          <li>10 output languages</li>
-          <li>Twitter auto-fetch</li>
+          <li data-i18n="plan2_f1">100 AI conversions per day</li>
+          <li data-i18n="plan2_f2">Up to 10 devices</li>
+          <li data-i18n="plan_f3b">All 3 formats</li>
+          <li data-i18n="plan_f4b">10 output languages</li>
+          <li data-i18n="plan_f5b">Twitter auto-fetch</li>
         </ul>
-        <a class="plan-btn" href="#" id="buyLinkCorp">Get Corporate</a>
+        <a class="plan-btn" href="#" id="buyLinkCorp" data-i18n="plan2_btn">Get Corporate</a>
       </div>
     </div>
-    <p class="free-note">Not ready? <strong>Start with 5 free conversions</strong> — no credit card required.</p>
+    <p class="free-note" data-i18n="free_note">Not ready? <strong>Start with 5 free conversions</strong> — no credit card required.</p>
+  </div>
+</section>
+
+<!-- OTHER PROJECTS -->
+<section id="projects">
+  <div class="section-label" data-i18n="proj_label">Our Other Projects</div>
+  <h2 class="section-title" data-i18n="proj_title">More tools we built</h2>
+  <p class="section-sub" data-i18n="proj_sub">We build AI-powered tools that help businesses grow faster.</p>
+  <div class="projects-grid">
+    <a class="project-card" href="https://tracora.ai" target="_blank" rel="noopener">
+      <div class="project-card-header">
+        <div class="project-card-icon" style="background: linear-gradient(135deg, rgba(99,102,241,.15), rgba(6,182,212,.15));">📡</div>
+        <div>
+          <h3>Tracora</h3>
+          <div class="project-card-url">tracora.ai</div>
+        </div>
+      </div>
+      <p data-i18n="tracora_desc">Track your brand visibility across 10+ AI search engines — ChatGPT, Perplexity, Gemini, Claude and more. Real-time alerts, CRM integration.</p>
+    </a>
+    <a class="project-card" href="https://pixreap.com" target="_blank" rel="noopener">
+      <div class="project-card-header">
+        <div class="project-card-icon" style="background: linear-gradient(135deg, rgba(16,185,129,.15), rgba(59,130,246,.15));">🖼️</div>
+        <div>
+          <h3>PixReap</h3>
+          <div class="project-card-url">pixreap.com</div>
+        </div>
+      </div>
+      <p data-i18n="pixreap_desc">Smart image scanner and bulk downloader Chrome extension. Detects all images on any page — including srcset, CSS backgrounds, and Shadow DOM — and downloads them in one click.</p>
+    </a>
+    <a class="project-card" href="https://usemarginpilot.com" target="_blank" rel="noopener">
+      <div class="project-card-header">
+        <div class="project-card-icon" style="background: linear-gradient(135deg, rgba(245,158,11,.15), rgba(239,68,68,.15));">📊</div>
+        <div>
+          <h3>MarginPilot</h3>
+          <div class="project-card-url">usemarginpilot.com</div>
+        </div>
+      </div>
+      <p data-i18n="marginpilot_desc">Profit margin calculator Chrome extension for marketplace sellers. Real-time margin, shipping, and fee calculations for Amazon, Trendyol, and more — right inside your browser.</p>
+    </a>
   </div>
 </section>
 
 <!-- CTA -->
 <div class="cta-section">
-  <h2>Ready to save hours every week?</h2>
-  <p>Join creators who use Hookify to publish better content, faster.</p>
+  <h2 data-i18n="cta_h">Ready to save hours every week?</h2>
+  <p data-i18n="cta_p">Join creators who use Hookify to publish better content, faster.</p>
   <div class="hero-btns">
-    <a class="btn-primary" href="#pricing">Get Started Free →</a>
+    <a class="btn-primary" href="#pricing" data-i18n="cta_btn">Get Started Free →</a>
   </div>
 </div>
 
 <!-- FOOTER -->
 <footer>
-  <div>
-    <a href="#">⚡ Hookify</a> &nbsp;·&nbsp; AI Social Media Content Converter
-  </div>
+  <div><a href="#">⚡ Hookify</a> &nbsp;·&nbsp; <span data-i18n="footer_desc">AI Social Media Content Converter</span></div>
   <div style="display:flex; gap: 20px;">
-    <a href="mailto:aydinticaret00@gmail.com">Support</a>
-    <a href="mailto:aydinticaret00@gmail.com?subject=Hookify%20Feedback">Feedback</a>
+    <a href="mailto:aydinticaret00@gmail.com" data-i18n="footer_support">Support</a>
+    <a href="mailto:aydinticaret00@gmail.com?subject=Hookify%20Feedback" data-i18n="footer_feedback">Feedback</a>
+    <a href="https://tracora.ai" target="_blank">Tracora</a>
   </div>
-  <div>© 2026 Hookify. All rights reserved.</div>
+  <div>© 2026 Hookify.</div>
 </footer>
+
+<script>
+const i18n = {
+  en: {
+    nav_cta: "Get Started Free",
+    hero_badge: "⚡ AI-Powered Chrome Extension",
+    hero_h1: 'Turn Any Text Into<br><span>Social Media Content</span><br>In One Click',
+    hero_sub: "Paste any text — LinkedIn post, Twitter thread, or Instagram caption is ready in seconds. Powered by GPT-4o mini.",
+    hero_btn1: "🚀 Start Free — 5 conversions",
+    hero_btn2: "Contact Us",
+    fmt_lang: "🌐 10 Languages",
+    how_label: "How It Works",
+    how_title: "Three steps to great content",
+    how_sub: "No learning curve. Just paste, pick, and convert.",
+    step1_h: "Paste Your Text", step1_p: "Copy any raw text — a blog post, email, article, or rough notes. Paste it into Hookify.",
+    step2_h: "Choose Format & Language", step2_p: "Select LinkedIn, Twitter, or Instagram. Pick your output language from 10 supported languages.",
+    step3_h: "Copy & Post", step3_p: "AI rewrites your text into a platform-perfect format. Copy with one click and post directly.",
+    feat_label: "Features", feat_title: "Everything you need", feat_sub: "Built for creators, marketers, and teams who publish content every day.",
+    feat1_p: "Industry-leading AI understands context and writes in your voice — not generic robot text.",
+    feat2_h: "10 Languages", feat2_p: "English, Turkish, Spanish, French, Arabic, Chinese, Hindi, Portuguese, Russian, and Japanese.",
+    feat3_h: "Instant Results", feat3_p: "Get your converted content in under 5 seconds. No waiting, no extra tabs.",
+    feat4_h: "Twitter Auto-Fetch", feat4_p: "On Twitter/X? One button auto-imports the tweet text directly into Hookify.",
+    feat5_h: "Secure & Private", feat5_p: "Encrypted proxy. No data stored, no tracking, no selling your content.",
+    feat6_h: "Multi-Device License", feat6_p: "One license covers up to 3 devices (Personal) or 10 devices (Corporate).",
+    lang_label: "Language Support", lang_title: "Write for a global audience", lang_sub: "Input in any language, output in the language your audience speaks.",
+    price_label: "Pricing", price_title: "Simple, honest pricing", price_sub: "Start free. Upgrade when you need more.",
+    plan1_name: "Personal", per_mo: "/mo", plan1_desc: "For individual creators and freelancers",
+    plan1_f1: "20 AI conversions per day", plan1_f2: "Up to 3 devices",
+    plan_f3: "All 3 formats", plan_f4: "10 output languages", plan_f5: "Twitter auto-fetch", plan1_btn: "Get Personal",
+    popular: "Most Popular", plan2_name: "Corporate", per_mo2: "/mo", plan2_desc: "For teams, agencies, and businesses",
+    plan2_f1: "100 AI conversions per day", plan2_f2: "Up to 10 devices",
+    plan_f3b: "All 3 formats", plan_f4b: "10 output languages", plan_f5b: "Twitter auto-fetch", plan2_btn: "Get Corporate",
+    free_note: 'Not ready? <strong>Start with 5 free conversions</strong> — no credit card required.',
+    proj_label: "Our Other Projects", proj_title: "More tools we built", proj_sub: "We build AI-powered tools that help businesses grow faster.",
+    tracora_desc: "Track your brand visibility across 10+ AI search engines — ChatGPT, Perplexity, Gemini, Claude and more. Real-time alerts, CRM integration.",
+    pixreap_desc: "Smart image scanner and bulk downloader Chrome extension. Detects all images on any page — including srcset, CSS backgrounds, and Shadow DOM — and downloads them in one click.",
+    marginpilot_desc: "Profit margin calculator Chrome extension for marketplace sellers. Real-time margin, shipping, and fee calculations for Amazon, Trendyol, and more — right inside your browser.",
+    cta_h: "Ready to save hours every week?", cta_p: "Join creators who use Hookify to publish better content, faster.", cta_btn: "Get Started Free →",
+    footer_desc: "AI Social Media Content Converter", footer_support: "Support", footer_feedback: "Feedback"
+  },
+  tr: {
+    nav_cta: "Ücretsiz Başla",
+    hero_badge: "⚡ Yapay Zeka Destekli Chrome Eklentisi",
+    hero_h1: 'Her Metni<br><span>Sosyal Medya İçeriğine</span><br>Tek Tıkla Dönüştür',
+    hero_sub: "Herhangi bir metni yapıştır — LinkedIn gönderisi, Twitter dizisi veya Instagram açıklaması saniyeler içinde hazır. GPT-4o mini ile güçlendirilmiştir.",
+    hero_btn1: "🚀 Ücretsiz Başla — 5 dönüşüm",
+    hero_btn2: "Bize Ulaşın",
+    fmt_lang: "🌐 10 Dil",
+    how_label: "Nasıl Çalışır",
+    how_title: "Üç adımda mükemmel içerik",
+    how_sub: "Öğrenme eğrisi yok. Yapıştır, seç ve dönüştür.",
+    step1_h: "Metni Yapıştır", step1_p: "Blog yazısı, e-posta, makale veya notlarını kopyala. Hookify'a yapıştır.",
+    step2_h: "Format ve Dil Seç", step2_p: "LinkedIn, Twitter veya Instagram seç. 10 desteklenen dilden çıktı dilini belirle.",
+    step3_h: "Kopyala ve Paylaş", step3_p: "Yapay zeka metni platforma özel formata dönüştürür. Tek tıkla kopyala ve paylaş.",
+    feat_label: "Özellikler", feat_title: "İhtiyacın olan her şey", feat_sub: "Her gün içerik yayınlayan yaratıcılar, pazarlamacılar ve ekipler için tasarlandı.",
+    feat1_p: "Sektörün önde gelen yapay zekası bağlamı anlıyor ve senin sesinde yazıyor.",
+    feat2_h: "10 Dil", feat2_p: "İngilizce, Türkçe, İspanyolca, Fransızca, Arapça, Çince, Hintçe, Portekizce, Rusça ve Japonca.",
+    feat3_h: "Anında Sonuç", feat3_p: "5 saniyenin altında dönüştürülmüş içerik. Bekleme yok, ek sekme yok.",
+    feat4_h: "Twitter Otomatik Al", feat4_p: "Twitter/X'teysen? Tek butonla tweet metni direkt Hookify'a aktarılır.",
+    feat5_h: "Güvenli ve Gizli", feat5_p: "Şifreli proxy. Veri saklanmaz, takip edilmez, içeriğin satılmaz.",
+    feat6_h: "Çoklu Cihaz Lisansı", feat6_p: "Bir lisans 3 cihaza kadar (Personal) veya 10 cihaza kadar (Corporate) tanımlanır.",
+    lang_label: "Dil Desteği", lang_title: "Küresel bir kitleye yaz", lang_sub: "Herhangi bir dilde gir, hedef kitlenin dilinde çıktı al.",
+    price_label: "Fiyatlandırma", price_title: "Sade ve dürüst fiyatlar", price_sub: "Ücretsiz başla. İhtiyacın olduğunda yükselt.",
+    plan1_name: "Bireysel", per_mo: "/ay", plan1_desc: "Bireysel içerik üreticileri ve freelancerlar için",
+    plan1_f1: "Günlük 20 AI dönüşümü", plan1_f2: "3 cihaza kadar",
+    plan_f3: "3 format", plan_f4: "10 çıktı dili", plan_f5: "Twitter otomatik al", plan1_btn: "Bireysel Al",
+    popular: "En Popüler", plan2_name: "Kurumsal", per_mo2: "/ay", plan2_desc: "Ekipler, ajanslar ve işletmeler için",
+    plan2_f1: "Günlük 100 AI dönüşümü", plan2_f2: "10 cihaza kadar",
+    plan_f3b: "3 format", plan_f4b: "10 çıktı dili", plan_f5b: "Twitter otomatik al", plan2_btn: "Kurumsal Al",
+    free_note: 'Henüz hazır değil misin? <strong>5 ücretsiz dönüşümle başla</strong> — kredi kartı gerekmez.',
+    proj_label: "Diğer Projelerimiz", proj_title: "Geliştirdiğimiz diğer araçlar", proj_sub: "İşletmelerin daha hızlı büyümesine yardımcı olan yapay zeka destekli araçlar geliştiriyoruz.",
+    tracora_desc: "ChatGPT, Perplexity, Gemini, Claude ve daha fazlasında marka görünürlüğünü takip et. Gerçek zamanlı bildirimler, CRM entegrasyonu.",
+    pixreap_desc: "Akıllı görsel tarayıcı ve toplu indirici Chrome eklentisi. Sayfadaki tüm görselleri (srcset, CSS arka planlar ve Shadow DOM dahil) tespit eder ve tek tıkla indirir.",
+    marginpilot_desc: "Pazaryeri satıcıları için kar marjı hesaplayıcı Chrome eklentisi. Amazon, Trendyol ve daha fazlası için gerçek zamanlı marj, kargo ve komisyon hesaplaması, tarayıcınızın içinde.",
+    cta_h: "Her hafta saatler kazanmaya hazır mısın?", cta_p: "Hookify ile daha iyi içerik yayınlayan yaratıcılara katıl.", cta_btn: "Ücretsiz Başla →",
+    footer_desc: "Yapay Zeka Destekli Sosyal Medya İçerik Dönüştürücü", footer_support: "Destek", footer_feedback: "Geri Bildirim"
+  }
+};
+
+let currentLang = 'en';
+
+function applyLang(lang) {
+  currentLang = lang;
+  const t = i18n[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key] !== undefined) el.innerHTML = t[key];
+  });
+  document.getElementById('langBtn').textContent = lang === 'en' ? '🌐 TR' : '🌐 EN';
+  document.documentElement.lang = lang;
+}
+
+function toggleLang() {
+  applyLang(currentLang === 'en' ? 'tr' : 'en');
+}
+
+// Auto-detect browser language
+const browserLang = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+applyLang(browserLang.startsWith('tr') ? 'tr' : 'en');
+</script>
 
 </body>
 </html>
