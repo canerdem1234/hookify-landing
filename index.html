@@ -3,8 +3,74 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hookify — AI Social Media Content Converter</title>
-  <meta name="description" content="Convert any text into LinkedIn posts, Twitter threads, or Instagram captions with one click. Powered by AI.">
+
+  <!-- Primary SEO -->
+  <title>Hookify — AI Social Media Content Converter Chrome Extension</title>
+  <meta name="description" content="Convert any text into LinkedIn posts, Twitter threads, or Instagram captions in one click. Powered by GPT-4o mini. 10 languages. Free to try.">
+  <meta name="keywords" content="AI social media content, LinkedIn post generator, Twitter thread generator, Instagram caption generator, Chrome extension AI, text to LinkedIn, social media AI tool, GPT-4 social media, content converter, yapay zeka sosyal medya, LinkedIn gönderi oluşturucu">
+  <meta name="author" content="Hookify">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://usehookify.net/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://usehookify.net/">
+  <meta property="og:title" content="Hookify — AI Social Media Content Converter">
+  <meta property="og:description" content="Turn any text into LinkedIn posts, Twitter threads, or Instagram captions in one click. Powered by GPT-4o mini. Free to try.">
+  <meta property="og:image" content="https://usehookify.net/og-image.png">
+  <meta property="og:site_name" content="Hookify">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Hookify — AI Social Media Content Converter">
+  <meta name="twitter:description" content="Turn any text into LinkedIn posts, Twitter threads, or Instagram captions in one click.">
+  <meta name="twitter:image" content="https://usehookify.net/og-image.png">
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Hookify",
+    "applicationCategory": "BrowserApplication",
+    "applicationSubCategory": "ProductivityApplication",
+    "operatingSystem": "Chrome",
+    "url": "https://usehookify.net",
+    "description": "Convert any text into LinkedIn posts, Twitter threads, or Instagram captions with one click. Powered by GPT-4o mini. Supports 10 languages.",
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "Personal",
+        "price": "149",
+        "priceCurrency": "TRY",
+        "description": "20 conversions/day, 3 devices"
+      },
+      {
+        "@type": "Offer",
+        "name": "Corporate",
+        "price": "399",
+        "priceCurrency": "TRY",
+        "description": "100 conversions/day, 10 devices"
+      }
+    ],
+    "featureList": [
+      "LinkedIn post generator",
+      "Twitter thread generator",
+      "Instagram caption generator",
+      "10 language support",
+      "GPT-4o mini powered"
+    ],
+    "screenshot": "https://usehookify.net/og-image.png",
+    "softwareVersion": "2.1.0",
+    "author": {
+      "@type": "Organization",
+      "name": "Hookify",
+      "url": "https://usehookify.net"
+    }
+  }
+  </script>
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -155,6 +221,37 @@
       display: flex; align-items: center; gap: 7px;
     }
 
+    /* ── INSTALL BANNER ── */
+    .install-banner {
+      background: linear-gradient(135deg, rgba(124,58,237,.1), rgba(59,130,246,.07));
+      border-top: 1px solid rgba(124,58,237,.2);
+      border-bottom: 1px solid rgba(124,58,237,.2);
+      padding: 28px 24px;
+      text-align: center;
+    }
+    .install-banner p { font-size: 14px; color: var(--t2); margin-bottom: 16px; }
+    .chrome-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: #fff; color: #1a1a2e;
+      font-weight: 700; font-size: 14px;
+      padding: 12px 24px; border-radius: 10px;
+      text-decoration: none;
+      transition: transform .15s, box-shadow .2s;
+      box-shadow: 0 4px 16px rgba(0,0,0,.3);
+    }
+    .chrome-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.4); }
+    .chrome-btn img { width: 22px; height: 22px; }
+    .coming-soon-tag {
+      display: inline-block;
+      background: rgba(245,158,11,.15);
+      border: 1px solid rgba(245,158,11,.3);
+      color: #fbbf24;
+      font-size: 10px; font-weight: 700;
+      padding: 2px 8px; border-radius: 20px;
+      letter-spacing: .5px; text-transform: uppercase;
+      margin-left: 8px;
+    }
+
     /* ── SECTION ── */
     section { padding: 80px 24px; max-width: 1100px; margin: 0 auto; }
     .section-label {
@@ -241,6 +338,23 @@
     .free-note { text-align: center; margin-top: 28px; font-size: 14px; color: var(--t3); }
     .free-note strong { color: var(--t2); }
 
+    /* ── FAQ ── */
+    .faq-list { display: flex; flex-direction: column; gap: 12px; max-width: 760px; margin: 0 auto; }
+    .faq-item {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; overflow: hidden;
+    }
+    .faq-q {
+      width: 100%; text-align: left; background: none; border: none; color: var(--t1);
+      font-size: 15px; font-weight: 600; padding: 20px 24px;
+      cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+      gap: 16px;
+    }
+    .faq-q span { font-size: 18px; color: var(--t3); transition: transform .2s; flex-shrink: 0; }
+    .faq-item.open .faq-q span { transform: rotate(45deg); }
+    .faq-a { display: none; padding: 0 24px 20px; font-size: 14px; color: var(--t2); line-height: 1.7; }
+    .faq-item.open .faq-a { display: block; }
+
     /* ── LANGUAGES ── */
     .lang-grid { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
     .lang-chip {
@@ -315,7 +429,7 @@
   <p class="hero-sub" data-i18n="hero_sub">Paste any text — LinkedIn post, Twitter thread, or Instagram caption is ready in seconds. Powered by GPT-4o mini.</p>
   <div class="hero-btns">
     <a class="btn-primary" href="#pricing" data-i18n="hero_btn1">🚀 Start Free — 5 conversions</a>
-    <a class="btn-secondary" href="mailto:aydinticaret00@gmail.com" data-i18n="hero_btn2">Contact Us</a>
+    <a class="btn-secondary" href="#install" data-i18n="hero_btn2">⬇ Install Extension</a>
   </div>
   <div class="formats">
     <div class="fmt-chip">💼 LinkedIn Post</div>
@@ -323,6 +437,23 @@
     <div class="fmt-chip">📸 Instagram Caption</div>
     <div class="fmt-chip" data-i18n="fmt_lang">🌐 10 Languages</div>
   </div>
+</div>
+
+<!-- INSTALL BANNER -->
+<div class="install-banner" id="install">
+  <p data-i18n="install_p">Hookify works as a Chrome extension — install it once and use it on any page.</p>
+  <a class="chrome-btn" href="https://chromewebstore.google.com/detail/hookify-ai-social-media-content-converter/nljodmibdipddodekjhhgopbljghfkjo" target="_blank" rel="noopener">
+    <svg width="22" height="22" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="24" cy="24" r="10" fill="#4285F4"/>
+      <path d="M14 24C14 18.477 18.477 14 24 14h12a14 14 0 0 1 0 20H24C18.477 34 14 29.523 14 24z" fill="#EA4335"/>
+      <path d="M14 24C14 18.477 18.477 14 24 14" stroke="white" stroke-width="0"/>
+      <path d="M24 14h12" stroke="#FBBC05" stroke-width="0"/>
+      <path d="M36 14a14 14 0 0 1 0 20" stroke="#34A853" stroke-width="0"/>
+      <circle cx="24" cy="24" r="6" fill="white"/>
+    </svg>
+    <span data-i18n="install_btn">Add to Chrome — It's Free</span>
+    <span class="coming-soon-tag" data-i18n="coming_soon">Coming Soon</span>
+  </a>
 </div>
 
 <!-- HOW IT WORKS -->
@@ -421,7 +552,7 @@
           <li data-i18n="plan_f4">10 output languages</li>
           <li data-i18n="plan_f5">Twitter auto-fetch</li>
         </ul>
-        <a class="plan-btn" href="#" id="buyLinkPers" data-i18n="plan1_btn">Get Personal</a>
+        <a class="plan-btn" href="https://aydinticaret.lemonsqueezy.com/checkout/buy/1dc12e82-ccb1-472a-936a-11b479dd09fc" target="_blank" rel="noopener" data-i18n="plan1_btn">Get Personal</a>
       </div>
       <div class="plan featured">
         <div class="plan-badge" data-i18n="popular">Most Popular</div>
@@ -435,49 +566,102 @@
           <li data-i18n="plan_f4b">10 output languages</li>
           <li data-i18n="plan_f5b">Twitter auto-fetch</li>
         </ul>
-        <a class="plan-btn" href="#" id="buyLinkCorp" data-i18n="plan2_btn">Get Corporate</a>
+        <a class="plan-btn" href="https://aydinticaret.lemonsqueezy.com/checkout/buy/5af04b5a-600a-413c-b932-0d7ea6c122be" target="_blank" rel="noopener" data-i18n="plan2_btn">Get Corporate</a>
       </div>
     </div>
     <p class="free-note" data-i18n="free_note">Not ready? <strong>Start with 5 free conversions</strong> — no credit card required.</p>
   </div>
 </section>
 
+<!-- FAQ -->
+<section id="faq">
+  <div class="section-label" data-i18n="faq_label">FAQ</div>
+  <h2 class="section-title" data-i18n="faq_title">Frequently Asked Questions</h2>
+  <p class="section-sub" data-i18n="faq_sub">Everything you need to know before getting started.</p>
+  <div class="faq-list">
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span data-i18n="faq1_q">Is Hookify really free to try?</span>
+        <span>+</span>
+      </button>
+      <div class="faq-a" data-i18n="faq1_a">Yes. Every new user gets 5 free AI conversions with no credit card required. You can upgrade to Personal or Corporate when you need more.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span data-i18n="faq2_q">What platforms does Hookify support?</span>
+        <span>+</span>
+      </button>
+      <div class="faq-a" data-i18n="faq2_a">Hookify converts text for LinkedIn (professional posts), Twitter/X (threaded tweets), and Instagram (engaging captions). More platforms are coming soon.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span data-i18n="faq3_q">Which languages are supported?</span>
+        <span>+</span>
+      </button>
+      <div class="faq-a" data-i18n="faq3_a">Hookify supports 10 output languages: English, Turkish, Spanish, French, Arabic, Chinese, Hindi, Portuguese, Russian, and Japanese. You can input text in any language.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span data-i18n="faq4_q">Is my content stored or shared?</span>
+        <span>+</span>
+      </button>
+      <div class="faq-a" data-i18n="faq4_a">No. Your text is sent to OpenAI's API for processing and is never stored on our servers. We do not log, sell, or share your content. See our Privacy Policy for full details.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span data-i18n="faq5_q">How does the license key work?</span>
+        <span>+</span>
+      </button>
+      <div class="faq-a" data-i18n="faq5_a">After purchasing, you receive a license key by email. Enter it once in the Hookify extension to unlock your plan. The Personal plan allows 3 devices; Corporate allows 10 devices.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span data-i18n="faq6_q">Can I cancel my subscription anytime?</span>
+        <span>+</span>
+      </button>
+      <div class="faq-a" data-i18n="faq6_a">Yes. Subscriptions are managed through Lemon Squeezy. You can cancel at any time from your billing portal — no questions asked.</div>
+    </div>
+  </div>
+</section>
+
 <!-- OTHER PROJECTS -->
-<section id="projects">
-  <div class="section-label" data-i18n="proj_label">Our Other Projects</div>
-  <h2 class="section-title" data-i18n="proj_title">More tools we built</h2>
-  <p class="section-sub" data-i18n="proj_sub">We build AI-powered tools that help businesses grow faster.</p>
-  <div class="projects-grid">
-    <a class="project-card" href="https://tracora.ai" target="_blank" rel="noopener">
-      <div class="project-card-header">
-        <div class="project-card-icon" style="background: linear-gradient(135deg, rgba(99,102,241,.15), rgba(6,182,212,.15));">📡</div>
-        <div>
-          <h3>Tracora</h3>
-          <div class="project-card-url">tracora.ai</div>
+<section id="projects" style="background: var(--surface); max-width: 100%; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+  <div style="max-width: 1100px; margin: 0 auto;">
+    <div class="section-label" data-i18n="proj_label">Our Other Projects</div>
+    <h2 class="section-title" data-i18n="proj_title">More tools we built</h2>
+    <p class="section-sub" data-i18n="proj_sub">We build AI-powered tools that help businesses grow faster.</p>
+    <div class="projects-grid">
+      <a class="project-card" href="https://tracora.ai" target="_blank" rel="noopener">
+        <div class="project-card-header">
+          <div class="project-card-icon" style="background: linear-gradient(135deg, rgba(99,102,241,.15), rgba(6,182,212,.15));">📡</div>
+          <div>
+            <h3>Tracora</h3>
+            <div class="project-card-url">tracora.ai</div>
+          </div>
         </div>
-      </div>
-      <p data-i18n="tracora_desc">Track your brand visibility across 10+ AI search engines — ChatGPT, Perplexity, Gemini, Claude and more. Real-time alerts, CRM integration.</p>
-    </a>
-    <a class="project-card" href="https://pixreap.com" target="_blank" rel="noopener">
-      <div class="project-card-header">
-        <div class="project-card-icon" style="background: linear-gradient(135deg, rgba(16,185,129,.15), rgba(59,130,246,.15));">🖼️</div>
-        <div>
-          <h3>PixReap</h3>
-          <div class="project-card-url">pixreap.com</div>
+        <p data-i18n="tracora_desc">Track your brand visibility across 10+ AI search engines — ChatGPT, Perplexity, Gemini, Claude and more. Real-time alerts, CRM integration.</p>
+      </a>
+      <a class="project-card" href="https://pixreap.com" target="_blank" rel="noopener">
+        <div class="project-card-header">
+          <div class="project-card-icon" style="background: linear-gradient(135deg, rgba(16,185,129,.15), rgba(59,130,246,.15));">🖼️</div>
+          <div>
+            <h3>PixReap</h3>
+            <div class="project-card-url">pixreap.com</div>
+          </div>
         </div>
-      </div>
-      <p data-i18n="pixreap_desc">Smart image scanner and bulk downloader Chrome extension. Detects all images on any page — including srcset, CSS backgrounds, and Shadow DOM — and downloads them in one click.</p>
-    </a>
-    <a class="project-card" href="https://usemarginpilot.com" target="_blank" rel="noopener">
-      <div class="project-card-header">
-        <div class="project-card-icon" style="background: linear-gradient(135deg, rgba(245,158,11,.15), rgba(239,68,68,.15));">📊</div>
-        <div>
-          <h3>MarginPilot</h3>
-          <div class="project-card-url">usemarginpilot.com</div>
+        <p data-i18n="pixreap_desc">Smart image scanner and bulk downloader Chrome extension. Detects all images on any page — including srcset, CSS backgrounds, and Shadow DOM — and downloads them in one click.</p>
+      </a>
+      <a class="project-card" href="https://usemarginpilot.com" target="_blank" rel="noopener">
+        <div class="project-card-header">
+          <div class="project-card-icon" style="background: linear-gradient(135deg, rgba(245,158,11,.15), rgba(239,68,68,.15));">📊</div>
+          <div>
+            <h3>MarginPilot</h3>
+            <div class="project-card-url">usemarginpilot.com</div>
+          </div>
         </div>
-      </div>
-      <p data-i18n="marginpilot_desc">Profit margin calculator Chrome extension for marketplace sellers. Real-time margin, shipping, and fee calculations for Amazon, Trendyol, and more — right inside your browser.</p>
-    </a>
+        <p data-i18n="marginpilot_desc">Profit margin calculator Chrome extension for marketplace sellers. Real-time margin, shipping, and fee calculations for Amazon, Trendyol, and more — right inside your browser.</p>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -493,9 +677,10 @@
 <!-- FOOTER -->
 <footer>
   <div><a href="#">⚡ Hookify</a> &nbsp;·&nbsp; <span data-i18n="footer_desc">AI Social Media Content Converter</span></div>
-  <div style="display:flex; gap: 20px;">
+  <div style="display:flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
+    <a href="#faq" data-i18n="footer_faq">FAQ</a>
+    <a href="/privacy.html" data-i18n="footer_privacy">Privacy Policy</a>
     <a href="mailto:aydinticaret00@gmail.com" data-i18n="footer_support">Support</a>
-    <a href="mailto:aydinticaret00@gmail.com?subject=Hookify%20Feedback" data-i18n="footer_feedback">Feedback</a>
     <a href="https://tracora.ai" target="_blank">Tracora</a>
   </div>
   <div>© 2026 Hookify.</div>
@@ -509,8 +694,11 @@ const i18n = {
     hero_h1: 'Turn Any Text Into<br><span>Social Media Content</span><br>In One Click',
     hero_sub: "Paste any text — LinkedIn post, Twitter thread, or Instagram caption is ready in seconds. Powered by GPT-4o mini.",
     hero_btn1: "🚀 Start Free — 5 conversions",
-    hero_btn2: "Contact Us",
+    hero_btn2: "⬇ Install Extension",
     fmt_lang: "🌐 10 Languages",
+    install_p: "Hookify works as a Chrome extension — install it once and use it on any page.",
+    install_btn: "Add to Chrome — It's Free",
+    coming_soon: "Coming Soon",
     how_label: "How It Works",
     how_title: "Three steps to great content",
     how_sub: "No learning curve. Just paste, pick, and convert.",
@@ -533,12 +721,25 @@ const i18n = {
     plan2_f1: "100 AI conversions per day", plan2_f2: "Up to 10 devices",
     plan_f3b: "All 3 formats", plan_f4b: "10 output languages", plan_f5b: "Twitter auto-fetch", plan2_btn: "Get Corporate",
     free_note: 'Not ready? <strong>Start with 5 free conversions</strong> — no credit card required.',
+    faq_label: "FAQ", faq_title: "Frequently Asked Questions", faq_sub: "Everything you need to know before getting started.",
+    faq1_q: "Is Hookify really free to try?",
+    faq1_a: "Yes. Every new user gets 5 free AI conversions with no credit card required. You can upgrade to Personal or Corporate when you need more.",
+    faq2_q: "What platforms does Hookify support?",
+    faq2_a: "Hookify converts text for LinkedIn (professional posts), Twitter/X (threaded tweets), and Instagram (engaging captions). More platforms are coming soon.",
+    faq3_q: "Which languages are supported?",
+    faq3_a: "Hookify supports 10 output languages: English, Turkish, Spanish, French, Arabic, Chinese, Hindi, Portuguese, Russian, and Japanese. You can input text in any language.",
+    faq4_q: "Is my content stored or shared?",
+    faq4_a: "No. Your text is sent to OpenAI's API for processing and is never stored on our servers. We do not log, sell, or share your content. See our Privacy Policy for full details.",
+    faq5_q: "How does the license key work?",
+    faq5_a: "After purchasing, you receive a license key by email. Enter it once in the Hookify extension to unlock your plan. The Personal plan allows 3 devices; Corporate allows 10 devices.",
+    faq6_q: "Can I cancel my subscription anytime?",
+    faq6_a: "Yes. Subscriptions are managed through Lemon Squeezy. You can cancel at any time from your billing portal — no questions asked.",
     proj_label: "Our Other Projects", proj_title: "More tools we built", proj_sub: "We build AI-powered tools that help businesses grow faster.",
     tracora_desc: "Track your brand visibility across 10+ AI search engines — ChatGPT, Perplexity, Gemini, Claude and more. Real-time alerts, CRM integration.",
     pixreap_desc: "Smart image scanner and bulk downloader Chrome extension. Detects all images on any page — including srcset, CSS backgrounds, and Shadow DOM — and downloads them in one click.",
     marginpilot_desc: "Profit margin calculator Chrome extension for marketplace sellers. Real-time margin, shipping, and fee calculations for Amazon, Trendyol, and more — right inside your browser.",
     cta_h: "Ready to save hours every week?", cta_p: "Join creators who use Hookify to publish better content, faster.", cta_btn: "Get Started Free →",
-    footer_desc: "AI Social Media Content Converter", footer_support: "Support", footer_feedback: "Feedback"
+    footer_desc: "AI Social Media Content Converter", footer_faq: "FAQ", footer_privacy: "Privacy Policy", footer_support: "Support"
   },
   tr: {
     nav_cta: "Ücretsiz Başla",
@@ -546,8 +747,11 @@ const i18n = {
     hero_h1: 'Her Metni<br><span>Sosyal Medya İçeriğine</span><br>Tek Tıkla Dönüştür',
     hero_sub: "Herhangi bir metni yapıştır — LinkedIn gönderisi, Twitter dizisi veya Instagram açıklaması saniyeler içinde hazır. GPT-4o mini ile güçlendirilmiştir.",
     hero_btn1: "🚀 Ücretsiz Başla — 5 dönüşüm",
-    hero_btn2: "Bize Ulaşın",
+    hero_btn2: "⬇ Eklentiyi Kur",
     fmt_lang: "🌐 10 Dil",
+    install_p: "Hookify bir Chrome eklentisi olarak çalışır — bir kez kur, her sayfada kullan.",
+    install_btn: "Chrome'a Ekle — Ücretsiz",
+    coming_soon: "Yakında",
     how_label: "Nasıl Çalışır",
     how_title: "Üç adımda mükemmel içerik",
     how_sub: "Öğrenme eğrisi yok. Yapıştır, seç ve dönüştür.",
@@ -560,7 +764,7 @@ const i18n = {
     feat3_h: "Anında Sonuç", feat3_p: "5 saniyenin altında dönüştürülmüş içerik. Bekleme yok, ek sekme yok.",
     feat4_h: "Twitter Otomatik Al", feat4_p: "Twitter/X'teysen? Tek butonla tweet metni direkt Hookify'a aktarılır.",
     feat5_h: "Güvenli ve Gizli", feat5_p: "Şifreli proxy. Veri saklanmaz, takip edilmez, içeriğin satılmaz.",
-    feat6_h: "Çoklu Cihaz Lisansı", feat6_p: "Bir lisans 3 cihaza kadar (Personal) veya 10 cihaza kadar (Corporate) tanımlanır.",
+    feat6_h: "Çoklu Cihaz Lisansı", feat6_p: "Bir lisans 3 cihaza kadar (Bireysel) veya 10 cihaza kadar (Kurumsal) tanımlanır.",
     lang_label: "Dil Desteği", lang_title: "Küresel bir kitleye yaz", lang_sub: "Herhangi bir dilde gir, hedef kitlenin dilinde çıktı al.",
     price_label: "Fiyatlandırma", price_title: "Sade ve dürüst fiyatlar", price_sub: "Ücretsiz başla. İhtiyacın olduğunda yükselt.",
     plan1_name: "Bireysel", per_mo: "/ay", plan1_desc: "Bireysel içerik üreticileri ve freelancerlar için",
@@ -570,12 +774,25 @@ const i18n = {
     plan2_f1: "Günlük 100 AI dönüşümü", plan2_f2: "10 cihaza kadar",
     plan_f3b: "3 format", plan_f4b: "10 çıktı dili", plan_f5b: "Twitter otomatik al", plan2_btn: "Kurumsal Al",
     free_note: 'Henüz hazır değil misin? <strong>5 ücretsiz dönüşümle başla</strong> — kredi kartı gerekmez.',
+    faq_label: "SSS", faq_title: "Sıkça Sorulan Sorular", faq_sub: "Başlamadan önce bilmen gereken her şey.",
+    faq1_q: "Hookify gerçekten ücretsiz mi?",
+    faq1_a: "Evet. Her yeni kullanıcı kredi kartı gerektirmeden 5 ücretsiz AI dönüşümü alır. Daha fazlasına ihtiyaç duyduğunda Bireysel veya Kurumsal plana geçebilirsin.",
+    faq2_q: "Hookify hangi platformları destekliyor?",
+    faq2_a: "Hookify LinkedIn (profesyonel gönderiler), Twitter/X (tweet dizileri) ve Instagram (etkileşimli açıklamalar) için metin dönüştürür. Daha fazla platform yakında geliyor.",
+    faq3_q: "Hangi diller destekleniyor?",
+    faq3_a: "Hookify 10 çıktı dilini destekler: İngilizce, Türkçe, İspanyolca, Fransızca, Arapça, Çince, Hintçe, Portekizce, Rusça ve Japonca. Her dilde metin girebilirsin.",
+    faq4_q: "İçeriklerim saklanıyor veya paylaşılıyor mu?",
+    faq4_a: "Hayır. Metinlerin işlenmek üzere OpenAI API'ye gönderilir ve sunucularımızda hiçbir zaman saklanmaz. İçeriklerini kaydetmez, satmaz veya paylaşmayız. Tüm detaylar için Gizlilik Politikamıza bakabilirsin.",
+    faq5_q: "Lisans anahtarı nasıl çalışıyor?",
+    faq5_a: "Satın aldıktan sonra e-posta ile bir lisans anahtarı alırsın. Planını etkinleştirmek için Hookify eklentisine bir kez gir. Bireysel plan 3 cihaza, Kurumsal plan 10 cihaza izin verir.",
+    faq6_q: "Aboneliği istediğim zaman iptal edebilir miyim?",
+    faq6_a: "Evet. Abonelikler Lemon Squeezy üzerinden yönetilir. Fatura portalından istediğin zaman iptal edebilirsin — soru sorulmaz.",
     proj_label: "Diğer Projelerimiz", proj_title: "Geliştirdiğimiz diğer araçlar", proj_sub: "İşletmelerin daha hızlı büyümesine yardımcı olan yapay zeka destekli araçlar geliştiriyoruz.",
     tracora_desc: "ChatGPT, Perplexity, Gemini, Claude ve daha fazlasında marka görünürlüğünü takip et. Gerçek zamanlı bildirimler, CRM entegrasyonu.",
     pixreap_desc: "Akıllı görsel tarayıcı ve toplu indirici Chrome eklentisi. Sayfadaki tüm görselleri (srcset, CSS arka planlar ve Shadow DOM dahil) tespit eder ve tek tıkla indirir.",
     marginpilot_desc: "Pazaryeri satıcıları için kar marjı hesaplayıcı Chrome eklentisi. Amazon, Trendyol ve daha fazlası için gerçek zamanlı marj, kargo ve komisyon hesaplaması, tarayıcınızın içinde.",
     cta_h: "Her hafta saatler kazanmaya hazır mısın?", cta_p: "Hookify ile daha iyi içerik yayınlayan yaratıcılara katıl.", cta_btn: "Ücretsiz Başla →",
-    footer_desc: "Yapay Zeka Destekli Sosyal Medya İçerik Dönüştürücü", footer_support: "Destek", footer_feedback: "Geri Bildirim"
+    footer_desc: "Yapay Zeka Destekli Sosyal Medya İçerik Dönüştürücü", footer_faq: "SSS", footer_privacy: "Gizlilik Politikası", footer_support: "Destek"
   }
 };
 
@@ -596,7 +813,11 @@ function toggleLang() {
   applyLang(currentLang === 'en' ? 'tr' : 'en');
 }
 
-// Auto-detect browser language
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  item.classList.toggle('open');
+}
+
 const browserLang = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
 applyLang(browserLang.startsWith('tr') ? 'tr' : 'en');
 </script>
