@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hookify — Kaldırma Geri Bildirimi</title>
+  <meta name="robots" content="noindex, nofollow">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary: #7c3aed;
+      --bg:      #0d0d14;
+      --surface: #161624;
+      --border:  #2a2a42;
+      --t1: #f1f5f9;
+      --t2: #94a3b8;
+      --t3: #64748b;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--t1);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, system-ui, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 60px 20px 80px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 48px 44px;
+      max-width: 560px;
+      width: 100%;
+    }
+
+    .icon { font-size: 44px; margin-bottom: 16px; }
+
+    h1 {
+      font-size: 24px; font-weight: 800;
+      letter-spacing: -.5px;
+      margin-bottom: 10px;
+    }
+    h1 span {
+      background: linear-gradient(135deg, #7c3aed, #60a5fa);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle { font-size: 15px; color: var(--t2); line-height: 1.6; margin-bottom: 36px; }
+
+    .label { font-size: 13px; font-weight: 700; color: var(--t2); text-transform: uppercase; letter-spacing: .6px; margin-bottom: 14px; }
+
+    .reasons { display: flex; flex-direction: column; gap: 9px; margin-bottom: 28px; }
+
+    .reason {
+      display: flex; align-items: center; gap: 12px;
+      background: #1e1e30;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      padding: 13px 16px;
+      cursor: pointer;
+      transition: border-color .2s, background .2s;
+      user-select: none;
+    }
+    .reason:hover { border-color: rgba(124,58,237,.4); background: rgba(124,58,237,.06); }
+    .reason.selected { border-color: var(--primary); background: rgba(124,58,237,.1); }
+
+    .reason input[type="radio"] { display: none; }
+
+    .reason-icon { font-size: 18px; }
+    .reason-text { font-size: 14px; color: var(--t1); font-weight: 500; }
+
+    textarea {
+      width: 100%;
+      background: #1e1e30;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--t1);
+      font-size: 14px;
+      font-family: inherit;
+      padding: 14px 16px;
+      resize: vertical;
+      min-height: 90px;
+      margin-bottom: 28px;
+      outline: none;
+      transition: border-color .2s;
+    }
+    textarea:focus { border-color: var(--primary); }
+    textarea::placeholder { color: var(--t3); }
+
+    .submit-btn {
+      width: 100%;
+      background: var(--primary);
+      color: #fff;
+      font-size: 15px; font-weight: 700;
+      border: none; border-radius: 10px;
+      padding: 14px;
+      cursor: pointer;
+      transition: background .2s, transform .15s;
+    }
+    .submit-btn:hover:not(:disabled) { background: #6d28d9; transform: translateY(-1px); }
+    .submit-btn:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+
+    .skip-link {
+      display: block; text-align: center;
+      margin-top: 16px;
+      font-size: 13px; color: var(--t3);
+      cursor: pointer;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .skip-link:hover { color: var(--t2); }
+
+    /* SUCCESS STATE */
+    .success-card {
+      display: none;
+      text-align: center;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 60px 44px;
+      max-width: 560px;
+      width: 100%;
+    }
+    .success-card.show { display: block; }
+    .card.hide { display: none; }
+
+    .success-icon { font-size: 52px; margin-bottom: 20px; }
+    .success-title { font-size: 22px; font-weight: 800; margin-bottom: 12px; }
+    .success-sub { font-size: 15px; color: var(--t2); margin-bottom: 32px; line-height: 1.6; }
+
+    .return-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--primary);
+      color: #fff; font-weight: 700; font-size: 14px;
+      padding: 12px 28px; border-radius: 10px;
+      text-decoration: none;
+      transition: background .2s;
+    }
+    .return-btn:hover { background: #6d28d9; }
+
+    @media (max-width: 560px) {
+      .card, .success-card { padding: 32px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="card" id="formCard">
+  <div class="icon">😢</div>
+  <h1>Hookify'ı <span>kaldırdınız</span></h1>
+  <p class="subtitle">Üzüldük. Daha iyi olmak için geri bildiriminize ihtiyacımız var. 30 saniyenizi alır, bize çok yardımcı olur.</p>
+
+  <div class="label">Neden kaldırdınız?</div>
+
+  <div class="reasons">
+    <label class="reason" onclick="select(this)">
+      <input type="radio" name="reason" value="too_expensive">
+      <span class="reason-icon">💰</span>
+      <span class="reason-text">Fiyat çok yüksekti / Ücretsiz hak yetmedi</span>
+    </label>
+    <label class="reason" onclick="select(this)">
+      <input type="radio" name="reason" value="not_useful">
+      <span class="reason-icon">😐</span>
+      <span class="reason-text">İşime yaramadı / Beklentimi karşılamadı</span>
+    </label>
+    <label class="reason" onclick="select(this)">
+      <input type="radio" name="reason" value="missing_feature">
+      <span class="reason-icon">🔧</span>
+      <span class="reason-text">İstediğim özellik yoktu</span>
+    </label>
+    <label class="reason" onclick="select(this)">
+      <input type="radio" name="reason" value="too_complex">
+      <span class="reason-icon">😵</span>
+      <span class="reason-text">Kullanımı karmaşık geldi</span>
+    </label>
+    <label class="reason" onclick="select(this)">
+      <input type="radio" name="reason" value="found_alternative">
+      <span class="reason-icon">🔄</span>
+      <span class="reason-text">Başka bir araç/uygulama kullanmaya başladım</span>
+    </label>
+    <label class="reason" onclick="select(this)">
+      <input type="radio" name="reason" value="temporary">
+      <span class="reason-icon">⏳</span>
+      <span class="reason-text">Geçici olarak kaldırdım, geri döneceğim</span>
+    </label>
+    <label class="reason" onclick="select(this)">
+      <input type="radio" name="reason" value="other">
+      <span class="reason-icon">💬</span>
+      <span class="reason-text">Diğer</span>
+    </label>
+  </div>
+
+  <div class="label" style="margin-bottom:10px">Eklemek istediğiniz bir şey var mı? <span style="font-weight:400;text-transform:none;letter-spacing:0">(isteğe bağlı)</span></div>
+  <textarea id="commentBox" placeholder="Hangi özelliği eksik buldunuz? Ne olsaydı kalırdınız?"></textarea>
+
+  <button class="submit-btn" id="submitBtn" disabled onclick="submit()">Gönder</button>
+  <a class="skip-link" onclick="showSuccess()">Atla</a>
+</div>
+
+<div class="success-card" id="successCard">
+  <div class="success-icon">🙏</div>
+  <div class="success-title">Teşekkürler!</div>
+  <div class="success-sub">Geri bildiriminiz iletildi. Bu tür görüşler Hookify'ı daha iyi yapmamıza doğrudan katkı sağlar.</div>
+  <a class="return-btn" href="https://usehookify.net">Hookify'a Geri Dön →</a>
+</div>
+
+<script>
+  const API = 'https://hookify-api-production.up.railway.app';
+
+  // URL parametrelerini oku
+  const params = new URLSearchParams(location.search);
+  const plan   = params.get('plan') || 'unknown';
+  const days   = parseInt(params.get('days') || '-1', 10);
+
+  function select(label) {
+    document.querySelectorAll('.reason').forEach(r => r.classList.remove('selected'));
+    label.classList.add('selected');
+    label.querySelector('input').checked = true;
+    document.getElementById('submitBtn').disabled = false;
+  }
+
+  async function submit() {
+    const reason  = document.querySelector('input[name="reason"]:checked')?.value;
+    const comment = document.getElementById('commentBox').value.trim();
+    if (!reason) return;
+
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.textContent = 'Gönderiliyor...';
+
+    try {
+      await fetch(`${API}/api/feedback/uninstall`, {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify({ reason, comment, plan, days })
+      });
+    } catch (_) {}
+
+    showSuccess();
+  }
+
+  function showSuccess() {
+    document.getElementById('formCard').classList.add('hide');
+    document.getElementById('successCard').classList.add('show');
+  }
+</script>
+</body>
+</html>
