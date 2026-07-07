@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hookify Kullanım Kılavuzu — Tüm Özellikler</title>
+  <meta name="description" content="Hookify AI içerik dönüştürücüsünü nasıl kullanacağınızı öğrenin. Kurulum, ton seçimi, Hook Lab, Re-Hook, İçerik Genişletici ve daha fazlası.">
+  <link rel="canonical" href="https://usehookify.net/guide.html">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary:  #7c3aed;
+      --primary2: #6d28d9;
+      --glow:     rgba(124,58,237,.35);
+      --bg:       #0d0d14;
+      --surface:  #161624;
+      --elevated: #1e1e30;
+      --border:   #2a2a42;
+      --t1: #f1f5f9;
+      --t2: #94a3b8;
+      --t3: #64748b;
+      --success: #10b981;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--t1);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, system-ui, sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(13,13,20,.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 18px; font-weight: 800;
+      text-decoration: none; color: var(--t1);
+    }
+    .nav-logo-icon {
+      width: 32px; height: 32px;
+      background: linear-gradient(135deg, #7c3aed, #3b82f6);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px;
+    }
+    .nav-right { display: flex; align-items: center; gap: 10px; }
+    .nav-back {
+      background: var(--elevated);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--t2);
+      font-size: 13px; font-weight: 600;
+      padding: 7px 16px;
+      text-decoration: none;
+      transition: all .2s;
+    }
+    .nav-back:hover { background: var(--border); color: var(--t1); }
+    .nav-cta {
+      background: var(--primary);
+      color: #fff; font-weight: 700; font-size: 13px;
+      padding: 9px 20px; border-radius: 8px;
+      text-decoration: none;
+      transition: background .2s;
+    }
+    .nav-cta:hover { background: var(--primary2); }
+
+    /* HERO */
+    .guide-hero {
+      text-align: center;
+      padding: 70px 24px 50px;
+      position: relative;
+    }
+    .guide-hero::before {
+      content: '';
+      position: absolute; top: -80px; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 400px;
+      background: radial-gradient(circle, rgba(124,58,237,.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .guide-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(124,58,237,.12);
+      border: 1px solid rgba(124,58,237,.3);
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-size: 12px; font-weight: 700; color: #c4b5fd;
+      letter-spacing: .5px; text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .guide-hero h1 {
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 900;
+      letter-spacing: -1px;
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+    .guide-hero h1 span {
+      background: linear-gradient(135deg, #7c3aed, #60a5fa);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .guide-hero p { font-size: 16px; color: var(--t2); max-width: 540px; margin: 0 auto 30px; }
+
+    /* TABLE OF CONTENTS */
+    .toc-wrap {
+      max-width: 860px; margin: 0 auto 60px; padding: 0 24px;
+    }
+    .toc {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 32px;
+    }
+    .toc h2 { font-size: 15px; color: var(--t2); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 18px; }
+    .toc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 8px; }
+    .toc-item {
+      display: flex; align-items: center; gap: 8px;
+      padding: 9px 12px;
+      background: var(--elevated);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      text-decoration: none;
+      color: var(--t2);
+      font-size: 13px;
+      transition: all .2s;
+    }
+    .toc-item:hover { color: var(--t1); border-color: var(--primary); background: rgba(124,58,237,.08); }
+    .toc-num { font-size: 11px; color: var(--primary); font-weight: 700; min-width: 18px; }
+
+    /* CONTENT */
+    .guide-content { max-width: 860px; margin: 0 auto; padding: 0 24px 100px; }
+
+    /* SECTION */
+    .guide-section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px;
+      margin-bottom: 28px;
+      scroll-margin-top: 80px;
+    }
+    .section-header {
+      display: flex; align-items: flex-start; gap: 18px;
+      margin-bottom: 28px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-icon {
+      width: 52px; height: 52px; flex-shrink: 0;
+      background: rgba(124,58,237,.15);
+      border: 1px solid rgba(124,58,237,.25);
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px;
+    }
+    .section-meta { flex: 1; }
+    .section-num { font-size: 12px; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+    .section-title { font-size: 22px; font-weight: 800; color: var(--t1); margin-bottom: 6px; }
+    .section-sub { font-size: 14px; color: var(--t2); }
+
+    /* STEPS */
+    .steps { display: flex; flex-direction: column; gap: 16px; }
+    .step {
+      display: flex; gap: 16px;
+      background: var(--elevated);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 20px;
+    }
+    .step-num {
+      width: 30px; height: 30px; flex-shrink: 0;
+      background: rgba(124,58,237,.2);
+      border: 1px solid rgba(124,58,237,.35);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 800; color: #c4b5fd;
+    }
+    .step-body { flex: 1; }
+    .step-title { font-size: 15px; font-weight: 700; color: var(--t1); margin-bottom: 4px; }
+    .step-desc { font-size: 14px; color: var(--t2); line-height: 1.6; }
+
+    /* TIP BOX */
+    .tip {
+      display: flex; gap: 14px;
+      background: rgba(16,185,129,.07);
+      border: 1px solid rgba(16,185,129,.2);
+      border-radius: 12px;
+      padding: 16px 18px;
+      margin-top: 20px;
+    }
+    .tip-icon { font-size: 18px; flex-shrink: 0; line-height: 1.4; }
+    .tip-text { font-size: 14px; color: #a7f3d0; line-height: 1.6; }
+    .tip-text strong { color: #34d399; }
+
+    /* WARN BOX */
+    .warn {
+      display: flex; gap: 14px;
+      background: rgba(245,158,11,.07);
+      border: 1px solid rgba(245,158,11,.2);
+      border-radius: 12px;
+      padding: 16px 18px;
+      margin-top: 20px;
+    }
+    .warn-icon { font-size: 18px; flex-shrink: 0; line-height: 1.4; }
+    .warn-text { font-size: 14px; color: #fde68a; line-height: 1.6; }
+
+    /* FEATURE GRID */
+    .feat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 4px; }
+    @media (max-width: 600px) { .feat-grid { grid-template-columns: 1fr; } }
+    .feat-card {
+      background: var(--elevated);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 18px;
+    }
+    .feat-card-head { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+    .feat-card-icon { font-size: 18px; }
+    .feat-card-title { font-size: 14px; font-weight: 700; color: var(--t1); }
+    .feat-card-desc { font-size: 13px; color: var(--t2); line-height: 1.55; }
+
+    /* TONE TABLE */
+    .tone-table { width: 100%; border-collapse: collapse; margin-top: 4px; }
+    .tone-table th {
+      text-align: left; padding: 10px 14px;
+      font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px;
+      color: var(--t3);
+      border-bottom: 1px solid var(--border);
+    }
+    .tone-table td {
+      padding: 12px 14px;
+      font-size: 14px; color: var(--t2);
+      border-bottom: 1px solid rgba(42,42,66,.5);
+    }
+    .tone-table tr:last-child td { border-bottom: none; }
+    .tone-tag {
+      display: inline-block;
+      background: rgba(124,58,237,.15);
+      border: 1px solid rgba(124,58,237,.25);
+      color: #c4b5fd;
+      border-radius: 6px;
+      padding: 3px 10px;
+      font-size: 12px; font-weight: 700;
+    }
+
+    /* INLINE CODE */
+    code {
+      background: rgba(124,58,237,.12);
+      border: 1px solid rgba(124,58,237,.2);
+      border-radius: 5px;
+      padding: 2px 7px;
+      font-family: 'Menlo', 'Consolas', monospace;
+      font-size: 13px;
+      color: #c4b5fd;
+    }
+
+    /* PLATFORM LIMITS */
+    .limits { display: flex; flex-direction: column; gap: 10px; }
+    .limit-row {
+      display: flex; align-items: center; gap: 14px;
+      background: var(--elevated);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+    }
+    .limit-icon { font-size: 22px; }
+    .limit-info { flex: 1; }
+    .limit-name { font-size: 14px; font-weight: 700; color: var(--t1); }
+    .limit-detail { font-size: 13px; color: var(--t2); }
+    .limit-bar-wrap { width: 120px; }
+    .limit-bar-bg { background: var(--border); border-radius: 4px; height: 5px; overflow: hidden; }
+    .limit-bar { height: 5px; border-radius: 4px; background: linear-gradient(90deg, var(--primary), #60a5fa); }
+
+    /* CTA FOOTER */
+    .guide-cta {
+      background: linear-gradient(135deg, rgba(124,58,237,.15), rgba(59,130,246,.1));
+      border: 1px solid rgba(124,58,237,.25);
+      border-radius: 20px;
+      padding: 48px 40px;
+      text-align: center;
+      margin-top: 40px;
+    }
+    .guide-cta h2 { font-size: 26px; font-weight: 800; margin-bottom: 12px; }
+    .guide-cta p { font-size: 15px; color: var(--t2); margin-bottom: 28px; }
+    .cta-btns { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+    .cta-btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--primary);
+      color: #fff; font-weight: 700; font-size: 14px;
+      padding: 13px 28px; border-radius: 10px;
+      text-decoration: none;
+      transition: background .2s, transform .15s;
+    }
+    .cta-btn-primary:hover { background: var(--primary2); transform: translateY(-1px); }
+    .cta-btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--elevated);
+      border: 1px solid var(--border);
+      color: var(--t2); font-weight: 600; font-size: 14px;
+      padding: 13px 28px; border-radius: 10px;
+      text-decoration: none;
+      transition: all .2s;
+    }
+    .cta-btn-secondary:hover { color: var(--t1); border-color: var(--primary); }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 24px;
+      text-align: center;
+      font-size: 13px; color: var(--t3);
+    }
+    footer a { color: var(--t2); text-decoration: none; }
+    footer a:hover { color: var(--t1); }
+
+    @media (max-width: 600px) {
+      .guide-section { padding: 24px 18px; }
+      .section-header { flex-direction: column; gap: 12px; }
+      .guide-cta { padding: 32px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="index.html">
+    <div class="nav-logo-icon">⚡</div>
+    Hookify
+  </a>
+  <div class="nav-right">
+    <a class="nav-back" href="index.html">← Ana Sayfa</a>
+    <a class="nav-cta" href="https://chromewebstore.google.com/detail/hookify-ai-social-media-content-converter/nljodmibdipddodekjhhgopbljghfkjo" target="_blank" rel="noopener">Ücretsiz Kur</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="guide-hero">
+  <div class="guide-badge">📖 Kullanım Kılavuzu</div>
+  <h1>Hookify'ı <span>En İyi Şekilde</span><br>Nasıl Kullanırsınız?</h1>
+  <p>Kurulumdan ileri özelliklere kadar adım adım rehberiniz. Tüm araçları öğrenin, içerik üretimini hızlandırın.</p>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<div class="toc-wrap">
+  <div class="toc">
+    <h2>İçindekiler</h2>
+    <div class="toc-grid">
+      <a class="toc-item" href="#kurulum"><span class="toc-num">01</span> Kurulum</a>
+      <a class="toc-item" href="#temel"><span class="toc-num">02</span> Temel Kullanım</a>
+      <a class="toc-item" href="#tonlar"><span class="toc-num">03</span> Ton Seçimi</a>
+      <a class="toc-item" href="#formatlar"><span class="toc-num">04</span> Platform Formatları</a>
+      <a class="toc-item" href="#hook-lab"><span class="toc-num">05</span> Hook Lab</a>
+      <a class="toc-item" href="#rehook"><span class="toc-num">06</span> Re-Hook Butonları</a>
+      <a class="toc-item" href="#genislet"><span class="toc-num">07</span> İçerik Genişletici</a>
+      <a class="toc-item" href="#gorsel"><span class="toc-num">08</span> Görsel Prompt</a>
+      <a class="toc-item" href="#taslaklar"><span class="toc-num">09</span> Taslak Arşivi</a>
+      <a class="toc-item" href="#sagklik"><span class="toc-num">10</span> Sağ Tık Menüsü</a>
+      <a class="toc-item" href="#zamanlama"><span class="toc-num">11</span> Zamanlama İpuçları</a>
+      <a class="toc-item" href="#lisans"><span class="toc-num">12</span> Lisans Aktivasyonu</a>
+    </div>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="guide-content">
+
+  <!-- 01 KURULUM -->
+  <div class="guide-section" id="kurulum">
+    <div class="section-header">
+      <div class="section-icon">🚀</div>
+      <div class="section-meta">
+        <div class="section-num">Bölüm 01</div>
+        <div class="section-title">Kurulum</div>
+        <div class="section-sub">Chrome ve Edge tarayıcılarına nasıl eklenir?</div>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">Mağazayı Açın</div>
+          <div class="step-desc">Chrome kullanıyorsanız Chrome Web Store'a, Edge kullanıyorsanız Microsoft Edge Add-ons mağazasına gidin. Arama kutusuna "Hookify" yazın.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">"Ekle" Butonuna Tıklayın</div>
+          <div class="step-desc">Chrome'da "Chrome'a Ekle", Edge'de "Edge'e Ekle" butonuna basın. Beliren izin penceresinde "Uzantı Ekle" yi onaylayın.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">Araç Çubuğuna Sabitleyin</div>
+          <div class="step-desc">Tarayıcının sağ üstündeki puzzle ikonu (uzantılar) → Hookify → iğne ikonuna tıklayın. Hookify'ın ⚡ simgesi araç çubuğunda görünür.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <div class="step-title">Hazırsınız!</div>
+          <div class="step-desc">⚡ simgesine tıklayın, popup açılır. İlk açılışta 5 ücretsiz dönüşüm hakkınız var.</div>
+        </div>
+      </div>
+    </div>
+    <div class="tip">
+      <div class="tip-icon">💡</div>
+      <div class="tip-text"><strong>İpucu:</strong> Hookify herhangi bir sayfadayken çalışır — ister bir makale okurken, ister e-posta yazarken. Sayfayı değiştirmenize gerek yok.</div>
+    </div>
+  </div>
+
+  <!-- 02 TEMEL KULLANIM -->
+  <div class="guide-section" id="temel">
+    <div class="section-header">
+      <div class="section-icon">✏️</div>
+      <div class="section-meta">
+        <div class="section-num">Bölüm 02</div>
+        <div class="section-title">Temel Kullanım</div>
+        <div class="section-sub">Metni dönüştürmek için gereken tek şey bir yapıştırma.</div>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">Metin Yapıştırın</div>
+          <div class="step-desc">Bir blog yazısı, haber makalesi, e-posta, kendi notlarınız veya herhangi bir ham metin — "Kaynak Metin" alanına yapıştırın.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">Format Seçin</div>
+          <div class="step-desc">LinkedIn Gönderi, Twitter Dizisi veya Instagram Açıklaması butonlarından birini seçin. Her platform için çıktı stili farklıdır.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">Ton Seçin</div>
+          <div class="step-desc">Profesyonel, Gündelik, Hikaye veya Heyecanlı tonlardan birini seçin. Ton, AI'nın içeriği nasıl yazacağını belirler.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <div class="step-title">"Yapay Zeka ile Dönüştür" Butonuna Basın</div>
+          <div class="step-desc">GPT-4o mini metninizi 3-5 saniye içinde dönüştürür. Sonuç "Sonuç" alanında görünür.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <div class="step-title">Kopyalayın</div>
+          <div class="step-desc">Sağ üstteki "Kopyala" butonuna basın, doğrudan sosyal medya platformuna yapıştırın.</div>
+        </div>
+      </div>
+    </div>
+    <div class="tip">
+      <div class="tip-icon">🌐</div>
+      <div class="tip-text"><strong>Dil seçimi:</strong> Çıktı dilini sağ üstündeki açılır menüden belirleyebilirsiniz — Türkçe, İngilizce, Almanca dahil 10 dil desteklenir. "Otomatik" seçeneği kaynak metnin dilini algılar.</div>
+    </div>
+  </div>
+
+  <!-- 03 TON SEÇİMİ -->
+  <div class="guide-section" id="tonlar">
+    <div class="section-header">
+      <div class="section-icon">🎭</div>
+      <div class="section-meta">
+        <div class="section-num">Bölüm 03</div>
+        <div class="section-title">Ton Seçimi</div>
+        <div class="section-sub">Her içerik için doğru ses tonu farklıdır.</div>
+      </div>
+    </div>
+    <table class="tone-table">
+      <thead>
+        <tr>
+          <th>Ton</th>
+          <th>Nasıl Yazar?</th>
+          <th>Ne Zaman Kullanılır?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="tone-tag">Profesyonel</span></td>
+          <td>Resmi, veriye dayalı, güvenilir</td>
+          <td>İş dünyası paylaşımları, sektör haberleri, raporlar</td>
+        </tr>
+        <tr>
+          <td><span class="tone-tag">Gündelik</span></td>
+          <td>Samimi, arkadaşça, konuşma dili</td>
+          <td>Kişisel gözlemler, günlük paylaşımlar</td>
+        </tr>
+        <tr>
+          <td><span class="tone-tag">Hikaye</span></td>
+          <td>Anlatısal, duygusal, birinci şahıs</td>
+          <td>Deneyim paylaşımları, ilham verici içerikler</td>
+        </tr>
+        <tr>
+          <td><span class="tone-tag">Heyecanlı</span></td>
+          <td>Enerjik, ünlem, eylem çağrısı</td>
+          <td>Duyurular, kampanyalar, lansmanlar</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="tip">
+      <div class="tip-icon">🔥</div>
+      <div class="tip-text"><strong>Profesyonel ipucu:</strong> Aynı metni farklı tonlarla dönüştürüp sonuçları karşılaştırın. Her ton farklı bir kitle çeker. Re-Hook butonları ile daha sonra tonu değiştirebilirsiniz.</div>
+    </div>
+  </div>
+
+  <!-- 04 PLATFORM FORMATLARI -->
+  <div class="guide-section" id="formatlar">
+    <div class="section-header">
+      <div class="section-icon">📱</div>
+      <div class="section-meta">
+        <div class="section-num">Bölüm 04</div>
+        <div class="section-title">Platform Formatları</div>
+        <div class="section-sub">Her platform için optimize edilmiş çıktılar.</div>
+      </div>
+    </div>
+    <div class="limits">
+      <div class="limit-row">
+        <div class="limit-icon">💼</div>
+        <div class="limit-info">
+          <div class="limit-name">LinkedIn Gönderi</div>
+          <div class="limit-detail">Kanca + paragraflar + hashtag + emoji yapısı. 3000 karakter sınırı. Sektörel, otorite kurucu format.</div>
+        </div>
+        <div class="limit-bar-wrap">
+          <div class="limit-bar-bg"><div class="limit-bar" style="width:60%"></div></div>
+        </div>
+      </div>
+      <div class="limit-row">
+        <div class="limit-icon">🐦</div>
+        <div class="limit-info">
+          <div class="limit-name">Twitter / X Dizisi</div>
+          <div class="limit-detail">Numaralı tweet dizisi, her tweet 280 karakter altında. Kısa, etkili, retweetlenebilir format.</div>
+        </div>
+        <div class="limit-bar-wrap">
+          <div class="limit-bar-bg"><div class="limit-bar" style="width:30%"></div></div>
+        </div>
+      </div>
+      <div class="limit-row">
+        <div class="limit-icon">📸</div>
+        <div class="limit-info">
+          <div class="limit-name">Instagram Açıklaması</div>
+          <div class="limit-detail">Emoji ağırlıklı, görsel tamamlayıcı, hashtag bloğuyla. 2200 karakter sınırı. Nişan çekici format.</div>
+        </div>
+        <div class="limit-bar-wrap">
+          <div class="limit-bar-bg"><div class="limit-bar" style="width:44%"></div></div>
+        </div>
+      </div>
+      <div class="limit-row">
+        <div class="limit-icon">✍️</div>
+        <div class="limit-info">
+          <div class="limit-name">Makaleye Genişlet</div>
+          <div class="limit-detail">Kısa fikirden 400-600 kelimelik LinkedIn makalesi. Başlık + giriş + 3 bölüm + sonuç yapısı.</div>
+        </div>
+        <div class="limit-bar-wrap">
+          <div class="limit-bar-bg"><div class="limit-bar" style="width:100%"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 05 HOOK LAB -->
+  <div class="guide-section" id="hook-lab">
+    <div class="section-header">
+      <div class="section-icon">✨</div>
+      <div class="section-meta">
+        <div class="section-num">Bölüm 05</div>
+        <div class="section-title">Hook Lab</div>
+        <div class="section-sub">Aynı içerik için 3 farklı giriş cümlesi alternatifi.</div>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">Önce Normal Dönüştürme Yapın</div>
+          <div class="step-desc">Bir içerik dönüştürün. Sonuç alanda içerik görününce Re-Hook butonları aktif hale gelir.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">"✨ Hook Lab" Butonuna Tıklayın</div>
+          <div class="step-desc">AI mevcut içeriğinizi analiz ederek 3 farklı kanca cümlesi önerir. Her biri farklı bir yaklaşımla dikkat çeker.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">Beğendiğinizi "Kullan" Butonuyla Seçin</div>
+          <div class="step-desc">"Kullan" butonuna basılan kanca, ana sonuç alanına eklenir. Buradan kopyalayabilir veya Re-Hook ile daha da geliştirebilirsiniz.</div>
+        </div>
+      </div>
+    </div>
+    <div class="tip">
+      <div class="tip-icon">🎯</div>
+      <div class="tip-text"><strong>Ne zaman kullanmalısınız?</strong> Giriş cümlesi en kritik kısımdır — ilk 2 satır okuyucunun devam edip etmeyeceğini belirler. Hook Lab ile en güçlü başlangıcı bulun.</div>
+    </div>
+  </div>
+
+  <!-- 06 REHOOK -->
+  <div class="guide-section" id="rehook">
+    <div class="section-header">
+      <div class="section-icon">🔄</div>
+      <div class="section-meta">
+        <div class="section-num">Bölüm 06</div>
+        <div class="section-title">Re-Hook Butonları</div>
+        <div class="section-sub">Üretilen içeriği anında rafine edin.</div>
+      </div>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-card">
+        <div class="feat-card-head">
+          <div class="feat-card-icon">↘</div>
+          <div class="feat-card-title">Daha Kısa</div>
+        </div>
+        <div class="feat-card-desc">İçeriği aynı mesajı koruyarak kısaltır. Twitter veya dikkat süresi kısa kitleler için idealdir.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-card-head">
+          <div class="feat-card-icon">↗</div>
+          <div class="feat-card-title">Daha Uzun</div>
+        </div>
+        <div class="feat-card-desc">İçeriği genişletir, ek bağlam ve detay ekler. LinkedIn'de daha kapsamlı anlatı için uygundur.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-card-head">
+          <div class="feat-card-icon">★</div>
+          <div class="feat-card-title">Daha Pro</div>
+        </div>
+        <div class="feat-card-desc">Dili daha resmi ve otoriter hale getirir. İş teklifleri, sektörel görüşler için.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-card-head">
+          <div class="feat-card-icon">✨</div>
+          <div class="feat-card-title">Hook Lab</div>
+        </div>
+        <div class="feat-card-desc">Mevcut içerik için 3 alternatif giriş cümlesi üretir. En güçlü kancayı seçin.</div>
+      </div>
+    </div>
+    <div class="warn">
+      <div class="warn-icon">⚠️</div>
+      <div class="warn-text">Her Re-Hook işlemi 1 dönüşüm hakkı kullanır. Ücretsiz planda 5 hakkınız var — lisanslı kullanıcılarda günlük 20 (Personal) veya 50 (Corporate) hak vardır.</div>
+    </div>
+  </div>
+
+  <!-- 07 İÇERİK GENİŞLETİCİ -->
+  <div class="guide-section" id="genislet">
+    <div class="section-header">
+      <div class="section-icon">📝</div>
+      <div class="section-meta">
+        <div class="section-num">Bölüm 07</div>
+        <div class="section-title">İçerik Genişletici</div>
+        <div class="section-sub">Kısa bir fikirden tam LinkedIn makalesi üretin.</div>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">Kısa Fikrinizi Yazın</div>
+          <div class="step-desc">Kaynak metin alanına 1-3 cümlelik ham fikrinizi, konu başlığınızı veya anahtar noktaları yazın.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">"✍️ Makaleye Genişlet" Formatını Seçin</div>
+          <div class="step-desc">Format ızgarasındaki 4. butona tıklayın. Bu mod özel olarak uzun form içerik için optimize edilmiştir.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">Dönüştürün</div>
+          <div class="step-desc">AI, fikirden başlık + giriş + 3 alt bölüm + eylem çağrısından oluşan 400-600 kelimelik bir makale üretir.</div>
+        </div>
+      </div>
+    </div>
+    <div class="tip">
+      <div class="tip-icon">✅</div>
+      <div class="tip-text"><strong>Sonucu direkt LinkedIn'e kopyalayabilirsiniz.</strong> LinkedIn'in "Makale Yaz" bölümüne yapıştırın. Başlık zaten dahildir — ayrıca başlık yazmanıza gerek yoktur.</div>
+    </div>
+  </div>
+
+  <!-- 08 GÖRSEL PROMPT -->
+  <div class="guide-section" id="gorsel">
+    <div class="section-header">
+      <div class="section-icon">🎨</div>
+      <div class="section-meta">
+        <div class="section-num">Bölüm 08</div>
+        <div class="section-title">Görsel Prompt Üreteci</div>
+        <div class="section-sub">İçeriğinize uygun AI görsel istemi otomatik oluşturulur.</div>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">Önce Bir İçerik Dönüştürün</div>
+          <div class="step-desc">LinkedIn, Twitter veya Instagram içeriğinizi oluşturun. Görsel prompt bu içerikten üretilir.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">"🎨 Görsel İstemi" Butonuna Tıklayın</div>
+          <div class="step-desc">Hookify içeriğinizi analiz ederek İngilizce bir Midjourney / DALL-E prompt metni oluşturur.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">Promptu Kopyalayın</div>
+          <div class="step-desc">"Kopyala" butonuna basın, Midjourney'e veya ChatGPT'nin DALL-E arayüzüne yapıştırın. Görsel sizin tarafınızdan üretilir.</div>
+        </div>
+      </div>
+    </div>
+    <div class="tip">
+      <div class="tip-icon">🖼️</div>
+      <div class="tip-text"><strong>Hookify görsel üretmez.</strong> Size hazır bir metin prompt verir — bunu Midjourney, DALL-E, Adobe Firefly gibi araçlara kopyalayıp yapıştırarak görseli siz üretirsiniz. Bu size tam kontrol sağlar.</div>
+    </div>
+  </div>
+
+  <!-- 09 TASLAK ARŞİVİ -->
+  <div class="guide-section" id="taslaklar">
+    <div class="section-header">
+      <div class="section-icon">💾</div>
+      <div class="section-meta">
+        <div class="section-num">Bölüm 09</div>
+        <div class="section-title">Taslak Arşivi</div>
+        <div class="section-sub">Üretilen içerikler otomatik kaydedilir, kaybolmaz.</div>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">✦</div>
+        <div class="step-body">
+          <div class="step-title">Otomatik Kayıt</div>
+          <div class="step-desc">Her başarılı dönüşüm otomatik olarak taslak olarak kaydedilir. Hiçbir şey yapmanız gerekmez.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">✦</div>
+        <div class="step-body">
+          <div class="step-title">Taslaklara Erişim</div>
+          <div class="step-desc">Popup'un alt kısmındaki "💾 Taslaklar" butonuna tıklayın. Tarih, format ve içerik önizlemesiyle listelenir.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">✦</div>
+        <div class="step-body">
+          <div class="step-title">Taslaktan Devam Edin</div>
+          <div class="step-desc">Taslaktaki metni tıklayarak seçin, kopyalayın veya yeni bir dönüşüm için kaynak alan olarak kullanın.</div>
+        </div>
+      </div>
+    </div>
+    <div class="warn">
+      <div class="warn-icon">📌</div>
+      <div class="warn-text">Son 10 taslak saklanır. Daha fazlası eklendikçe en eski taslak silinir. Önemli içerikleri ayrıca bir yere kaydetmeyi unutmayın.</div>
+    </div>
+  </div>
+
+  <!-- 10 SAĞ TIK MENÜSÜ -->
+  <div class="guide-section" id="sagklik">
+    <div class="section-header">
+      <div class="section-icon">🖱️</div>
+      <div class="section-meta">
+        <div class="section-num">Bölüm 10</div>
+        <div class="section-title">Sağ Tık ile Anında Dönüştür</div>
+        <div class="section-sub">Herhangi bir web sayfasındaki metni seçin ve dönüştürün.</div>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">Web Sayfasında Metin Seçin</div>
+          <div class="step-desc">Bir haber sitesi, blog veya herhangi bir sayfadaki metni fare ile seçin (tıklayıp sürükleyin).</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">Sağ Tıklayın</div>
+          <div class="step-desc">Bağlam menüsünde "Hookify ile Dönüştür" seçeneğini tıklayın. Hookify popup'u otomatik açılır, metin hazır gelir.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">Format Seçip Dönüştürün</div>
+          <div class="step-desc">Metin zaten kaynak alana yüklenmiş gelir. Format ve tonu seçip dönüştür butonuna basmanız yeterli.</div>
+        </div>
+      </div>
+    </div>
+    <div class="tip">
+      <div class="tip-icon">⚡</div>
+      <div class="tip-text"><strong>En hızlı yol budur.</strong> Kopyala → Hookify aç → yapıştır adımlarını atlarsınız. Doğrudan seç → sağ tık → dönüştür.</div>
+    </div>
+  </div>
+
+  <!-- 11 ZAMANLAMA İPUÇLARI -->
+  <div class="guide-section" id="zamanlama">
+    <div class="section-header">
+      <div class="section-icon">⏰</div>
+      <div class="section-meta">
+        <div class="section-num">Bölüm 11</div>
+        <div class="section-title">Zamanlama İpuçları</div>
+        <div class="section-sub">Doğru saatte paylaşmak etkileşimi ikiye katlar.</div>
+      </div>
+    </div>
+    <p style="color:var(--t2);font-size:14px;margin-bottom:16px;">Her dönüşümün ardından Hookify, seçtiğiniz platforma göre en ideal paylaşım zamanını gösterir:</p>
+    <div class="feat-grid">
+      <div class="feat-card">
+        <div class="feat-card-head">
+          <div class="feat-card-icon">💼</div>
+          <div class="feat-card-title">LinkedIn</div>
+        </div>
+        <div class="feat-card-desc">Salı–Perşembe, 08:00–10:00 veya 17:00–18:00. Çalışma saatleri başında ve sonunda en yüksek görünürlük.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-card-head">
+          <div class="feat-card-icon">🐦</div>
+          <div class="feat-card-title">Twitter / X</div>
+        </div>
+        <div class="feat-card-desc">Hafta içi 12:00–15:00 arası öğle molası trafiği. Hafta sonu sabahları da aktif kitle yakalar.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-card-head">
+          <div class="feat-card-icon">📸</div>
+          <div class="feat-card-title">Instagram</div>
+        </div>
+        <div class="feat-card-desc">Hafta içi 11:00–13:00 ve akşam 19:00–21:00. Görsel platformlarda gece trafiği yüksektir.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-card-head">
+          <div class="feat-card-icon">📈</div>
+          <div class="feat-card-title">Genel İpucu</div>
+        </div>
+        <div class="feat-card-desc">Hedef kitlenizin saat dilimine göre ayarlayın. B2B için sabah, B2C için akşam saatleri daha iyi çalışır.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 12 LİSANS AKTİVASYONU -->
+  <div class="guide-section" id="lisans">
+    <div class="section-header">
+      <div class="section-icon">🔑</div>
+      <div class="section-meta">
+        <div class="section-num">Bölüm 12</div>
+        <div class="section-title">Lisans Aktivasyonu</div>
+        <div class="section-sub">Sınırsız dönüşüm için lisansınızı aktive edin.</div>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">Lisans Satın Alın</div>
+          <div class="step-desc"><a href="index.html#pricing" style="color:#c4b5fd">usehookify.net/#pricing</a> adresinden Personal veya Corporate planı satın alın. Ödeme sonrası lisans anahtarınız e-posta ile gelir.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">Hookify Popup'unu Açın</div>
+          <div class="step-desc">5 ücretsiz hakkınız bitince lisans ekranı otomatik açılır. Ya da alt kısımdaki "Lisans anahtarınız var mı?" linkine tıklayın.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">Anahtarı Girin</div>
+          <div class="step-desc"><code>LIC-PERS-XXXX-XXXX-XXXX</code> formatındaki anahtarı ilgili alana yapıştırın ve "Etkinleştir" butonuna basın.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <div class="step-title">Anında Aktif</div>
+          <div class="step-desc">Aktivasyon saniyeler içinde tamamlanır. Header'da lisans rozetiniz görünür ve günlük hakkınız sıfırlanır.</div>
+        </div>
+      </div>
+    </div>
+    <div class="feat-grid" style="margin-top:20px">
+      <div class="feat-card">
+        <div class="feat-card-head">
+          <div class="feat-card-icon">👤</div>
+          <div class="feat-card-title">Personal Plan</div>
+        </div>
+        <div class="feat-card-desc">Günde 20 dönüşüm, 3 cihaza kadar kullanım. Bireysel içerik üreticiler için ideal.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-card-head">
+          <div class="feat-card-icon">🏢</div>
+          <div class="feat-card-title">Corporate Plan</div>
+        </div>
+        <div class="feat-card-desc">Günde 50 dönüşüm, 10 cihaza kadar kullanım. Ajanslar ve ekipler için tasarlandı.</div>
+      </div>
+    </div>
+    <div class="tip">
+      <div class="tip-icon">📧</div>
+      <div class="tip-text"><strong>Sorun mu yaşıyorsunuz?</strong> Lisans anahtarınız gelmediyse veya aktivasyon çalışmıyorsa <a href="mailto:aydinticaret00@gmail.com" style="color:#34d399">aydinticaret00@gmail.com</a> adresine yazın, 24 saat içinde yanıt verilir.</div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="guide-cta">
+    <h2>Hazır mısınız?</h2>
+    <p>Hookify'ı ücretsiz deneyin — kurulum 30 saniye, ilk dönüşüm 5 saniye alır.</p>
+    <div class="cta-btns">
+      <a class="cta-btn-primary" href="https://chromewebstore.google.com/detail/hookify-ai-social-media-content-converter/nljodmibdipddodekjhhgopbljghfkjo" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="10" fill="#4285F4"/><path d="M14 24C14 18.477 18.477 14 24 14h12a14 14 0 0 1 0 20H24C18.477 34 14 29.523 14 24z" fill="#EA4335"/><circle cx="24" cy="24" r="6" fill="white"/></svg>
+        Chrome'a Ekle — Ücretsiz
+      </a>
+      <a class="cta-btn-primary" href="https://microsoftedge.microsoft.com/addons/detail/hookify-ai-social-media/lnkdealipfaoldbhbcednnfkmmljhghd" target="_blank" rel="noopener" style="background:#0078d7">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="white" fill-opacity=".9"><path d="M21.86 17.86c-.36.19-.74.34-1.13.47a9.08 9.08 0 0 1-2.93.47c-3.37 0-5.24-1.85-5.24-5.13 0-2.75 1.82-5.08 4.59-5.08 2.27 0 3.66 1.39 3.66 3.62 0 .66-.1 1.31-.3 1.94H14.6c.14 1.6 1.19 2.43 2.89 2.43.9 0 1.79-.21 2.6-.6l1.77 1.88z"/><path d="M12.04 2C6.48 2 2 6.48 2 12s4.48 10 10.04 10a10 10 0 0 0 5.34-1.54l-1.66-1.75a7.36 7.36 0 0 1-3.68.97c-4.06 0-7.36-3.25-7.36-7.27 0-3.47 2.42-6.38 5.67-7.12A8.04 8.04 0 0 0 12.04 2z" fill-opacity=".6"/></svg>
+        Edge'e Ekle — Ücretsiz
+      </a>
+      <a class="cta-btn-secondary" href="index.html#pricing">Fiyatlandırmayı Gör →</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2024 Hookify &nbsp;·&nbsp; <a href="index.html">Ana Sayfa</a> &nbsp;·&nbsp; <a href="index.html#pricing">Fiyatlandırma</a> &nbsp;·&nbsp; <a href="mailto:aydinticaret00@gmail.com">Destek</a></p>
+</footer>
+
+</body>
+</html>
