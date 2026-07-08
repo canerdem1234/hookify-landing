@@ -407,6 +407,52 @@
     footer a { color: var(--t3); text-decoration: none; }
     footer a:hover { color: var(--t2); }
 
+    /* ── MARQUEE ── */
+    .marquee-section {
+      padding: 36px 0;
+      overflow: hidden;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .marquee-row {
+      display: flex;
+      gap: 0;
+      margin-bottom: 12px;
+    }
+    .marquee-row:last-child { margin-bottom: 0; }
+    .marquee-track {
+      display: flex;
+      gap: 10px;
+      animation: marquee-left 28s linear infinite;
+      flex-shrink: 0;
+      min-width: max-content;
+    }
+    .marquee-row.reverse .marquee-track {
+      animation: marquee-right 32s linear infinite;
+    }
+    @keyframes marquee-left {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    @keyframes marquee-right {
+      0%   { transform: translateX(-50%); }
+      100% { transform: translateX(0); }
+    }
+    .marquee-section:hover .marquee-track { animation-play-state: paused; }
+    .m-chip {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: var(--elevated);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 8px 16px;
+      font-size: 13px; font-weight: 600; color: var(--t2);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .m-chip.accent { border-color: rgba(124,58,237,.4); color: #c4b5fd; background: rgba(124,58,237,.08); }
+    .m-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--primary); flex-shrink: 0; }
+
     @media (max-width: 600px) {
       .hero { padding: 60px 20px 50px; }
       section { padding: 60px 20px; }
@@ -465,6 +511,60 @@
       </svg>
       <span data-i18n="install_btn_edge">Add to Edge — Free</span>
     </a>
+  </div>
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <!-- Row 1: left -->
+  <div class="marquee-row">
+    <div class="marquee-track">
+      <span class="m-chip accent">💼 LinkedIn Post</span>
+      <span class="m-chip">🐦 Twitter Thread</span>
+      <span class="m-chip accent">📸 Instagram Caption</span>
+      <span class="m-chip">📧 Newsletter</span>
+      <span class="m-chip accent">⚡ Hook Lab</span>
+      <span class="m-chip">🔄 Re-Hook</span>
+      <span class="m-chip accent">🌍 10 Languages</span>
+      <span class="m-chip">🤖 GPT-4o mini</span>
+      <span class="m-chip accent">📝 Content Expander</span>
+      <span class="m-chip">🖼️ Visual Prompt</span>
+      <span class="m-chip accent">💼 LinkedIn Post</span>
+      <span class="m-chip">🐦 Twitter Thread</span>
+      <span class="m-chip accent">📸 Instagram Caption</span>
+      <span class="m-chip">📧 Newsletter</span>
+      <span class="m-chip accent">⚡ Hook Lab</span>
+      <span class="m-chip">🔄 Re-Hook</span>
+      <span class="m-chip accent">🌍 10 Languages</span>
+      <span class="m-chip">🤖 GPT-4o mini</span>
+      <span class="m-chip accent">📝 Content Expander</span>
+      <span class="m-chip">🖼️ Visual Prompt</span>
+    </div>
+  </div>
+  <!-- Row 2: right (reverse) -->
+  <div class="marquee-row reverse">
+    <div class="marquee-track">
+      <span class="m-chip"><span class="m-dot"></span>Professional Tone</span>
+      <span class="m-chip accent"><span class="m-dot"></span>Draft Archive</span>
+      <span class="m-chip"><span class="m-dot"></span>Right-click Menu</span>
+      <span class="m-chip accent"><span class="m-dot"></span>Casual Tone</span>
+      <span class="m-chip"><span class="m-dot"></span>Bold Tone</span>
+      <span class="m-chip accent"><span class="m-dot"></span>Side Panel</span>
+      <span class="m-chip"><span class="m-dot"></span>Chrome Extension</span>
+      <span class="m-chip accent"><span class="m-dot"></span>Edge Extension</span>
+      <span class="m-chip"><span class="m-dot"></span>5 Free Uses</span>
+      <span class="m-chip accent"><span class="m-dot"></span>One Click Convert</span>
+      <span class="m-chip"><span class="m-dot"></span>Professional Tone</span>
+      <span class="m-chip accent"><span class="m-dot"></span>Draft Archive</span>
+      <span class="m-chip"><span class="m-dot"></span>Right-click Menu</span>
+      <span class="m-chip accent"><span class="m-dot"></span>Casual Tone</span>
+      <span class="m-chip"><span class="m-dot"></span>Bold Tone</span>
+      <span class="m-chip accent"><span class="m-dot"></span>Side Panel</span>
+      <span class="m-chip"><span class="m-dot"></span>Chrome Extension</span>
+      <span class="m-chip accent"><span class="m-dot"></span>Edge Extension</span>
+      <span class="m-chip"><span class="m-dot"></span>5 Free Uses</span>
+      <span class="m-chip accent"><span class="m-dot"></span>One Click Convert</span>
+    </div>
   </div>
 </div>
 
