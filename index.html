@@ -967,6 +967,13 @@ function toggleFaq(btn) {
 
 const browserLang = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
 applyLang(browserLang.startsWith('tr') ? 'tr' : 'en');
+
+// Hafif ziyaret sayacı (3. parti analytics yerine kendi API'mize).
+fetch('https://hookify-api-production.up.railway.app/api/site-visit', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ path: location.pathname, referrer: document.referrer || null })
+}).catch(() => {});
 </script>
 
 </body>
