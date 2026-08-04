@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Free LinkedIn Post Length Checker & "See More" Preview Tool</title>
+  <meta name="description" content="Paste your LinkedIn post and instantly see its character count, whether it exceeds LinkedIn's 3,000 character limit, and exactly where the 'See more' cutoff will truncate it. Free, no signup.">
+  <meta name="keywords" content="LinkedIn post length checker, LinkedIn character limit, LinkedIn see more cutoff, LinkedIn post character count tool, free LinkedIn tool">
+  <meta name="author" content="Hookify">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="favicon-48.png">
+  <link rel="apple-touch-icon" href="favicon-128.png">
+  <link rel="canonical" href="https://usehookify.net/linkedin-post-length-checker.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://usehookify.net/linkedin-post-length-checker.html">
+  <meta property="og:title" content="Free LinkedIn Post Length Checker & &quot;See More&quot; Preview Tool">
+  <meta property="og:description" content="Check your LinkedIn post's character count and see exactly where the 'See more' cutoff hits, before you post.">
+  <meta property="og:image" content="https://usehookify.net/og-image.png">
+  <meta property="og:site_name" content="Hookify">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Free LinkedIn Post Length Checker">
+  <meta name="twitter:image" content="https://usehookify.net/og-image.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "LinkedIn Post Length Checker",
+    "url": "https://usehookify.net/linkedin-post-length-checker.html",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any (browser-based)",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "description": "Free browser tool that counts LinkedIn post characters and previews the 'See more' truncation point."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "What is LinkedIn's character limit for posts?", "acceptedAnswer": { "@type": "Answer", "text": "LinkedIn allows up to 3,000 characters per post. If you go over, the post won't publish until you cut it down." } },
+      { "@type": "Question", "name": "Where does LinkedIn's 'See more' cutoff happen?", "acceptedAnswer": { "@type": "Answer", "text": "On desktop, LinkedIn truncates posts and shows 'See more' after roughly 210 characters. On mobile, the cutoff is shorter, typically around 140 characters. The exact number can vary slightly by LinkedIn's current layout." } },
+      { "@type": "Question", "name": "Why does the 'See more' cutoff matter?", "acceptedAnswer": { "@type": "Answer", "text": "Everything before the cutoff is what people see in their feed before deciding whether to click 'See more' and read the rest. A weak first line means most of your audience never reads past it." } }
+    ]
+  }
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --primary: #7c3aed; --primary2: #6d28d9; --glow: rgba(124,58,237,.35);
+      --bg: #0d0d14; --surface: #161624; --elevated: #1e1e30; --border: #2a2a42;
+      --t1: #f1f5f9; --t2: #94a3b8; --t3: #64748b; --success: #10b981; --warn: #f59e0b; --danger: #f87171;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--t1); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, system-ui, sans-serif; line-height: 1.6; overflow-x: hidden; }
+
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(13,13,20,.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 60px; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; font-size: 18px; font-weight: 800; letter-spacing: -.4px; text-decoration: none; color: var(--t1); }
+    .nav-logo-icon { width: 32px; height: 32px; background: linear-gradient(135deg, #7c3aed, #3b82f6); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+    .nav-cta { background: var(--primary); color: #fff; font-weight: 700; font-size: 13px; padding: 9px 20px; border-radius: 8px; text-decoration: none; }
+    .nav-cta:hover { background: var(--primary2); }
+
+    .hero { text-align: center; padding: 60px 24px 30px; position: relative; }
+    .hero::before { content: ''; position: absolute; top: -120px; left: 50%; transform: translateX(-50%); width: 700px; height: 700px; background: radial-gradient(circle, rgba(124,58,237,.18) 0%, transparent 70%); pointer-events: none; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(124,58,237,.12); border: 1px solid rgba(124,58,237,.3); border-radius: 20px; padding: 5px 14px; font-size: 12px; font-weight: 700; color: #c4b5fd; letter-spacing: .5px; text-transform: uppercase; margin-bottom: 24px; }
+    .hero h1 { font-size: clamp(28px, 4.5vw, 44px); font-weight: 900; letter-spacing: -1px; line-height: 1.15; margin-bottom: 14px; max-width: 780px; margin-left: auto; margin-right: auto; }
+    .hero h1 span { background: linear-gradient(135deg, #7c3aed, #60a5fa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero-sub { font-size: 16px; color: var(--t2); max-width: 600px; margin: 0 auto; }
+
+    .tool-wrap { max-width: 720px; margin: 0 auto; padding: 30px 24px 10px; }
+    textarea#postInput {
+      width: 100%; min-height: 180px; background: var(--surface); border: 1px solid var(--border);
+      border-radius: 14px; padding: 18px; color: var(--t1); font-size: 15px; font-family: inherit;
+      resize: vertical; line-height: 1.6;
+    }
+    textarea#postInput:focus { outline: none; border-color: var(--primary); }
+    .stats-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
+    .stat-chip { flex: 1; min-width: 140px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; }
+    .stat-chip .num { font-size: 24px; font-weight: 900; }
+    .stat-chip .label { font-size: 12px; color: var(--t3); text-transform: uppercase; letter-spacing: .5px; margin-top: 2px; }
+    .stat-chip.ok .num { color: var(--success); }
+    .stat-chip.warn .num { color: var(--warn); }
+    .stat-chip.danger .num { color: var(--danger); }
+
+    .preview-label { font-size: 12px; color: var(--t3); text-transform: uppercase; letter-spacing: .5px; margin: 28px 0 10px; }
+    .li-preview { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 20px; }
+    .li-preview-head { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+    .li-avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #7c3aed, #3b82f6); flex-shrink: 0; }
+    .li-name { font-size: 14px; font-weight: 700; color: var(--t1); }
+    .li-sub { font-size: 12px; color: var(--t3); }
+    .li-body { font-size: 14px; color: var(--t1); white-space: pre-wrap; word-wrap: break-word; }
+    .li-body .cut { background: rgba(248,113,113,.18); border-bottom: 2px solid var(--danger); }
+    .li-more { color: var(--t3); font-size: 13px; font-weight: 600; cursor: default; }
+
+    section { padding: 60px 24px; max-width: 720px; margin: 0 auto; }
+    .section-title { font-size: clamp(22px, 3.5vw, 30px); font-weight: 900; letter-spacing: -.5px; text-align: center; margin-bottom: 28px; }
+    .faq-list { display: flex; flex-direction: column; gap: 12px; }
+    .faq-item { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px 24px; }
+    .faq-item h3 { font-size: 15px; margin-bottom: 8px; }
+    .faq-item p { font-size: 14px; color: var(--t2); }
+
+    .cta-section { text-align: center; background: linear-gradient(135deg, rgba(124,58,237,.12) 0%, rgba(59,130,246,.08) 100%); border: 1px solid rgba(124,58,237,.2); border-radius: 24px; padding: 48px 24px; margin: 0 24px 70px; }
+    .cta-section h2 { font-size: clamp(22px, 3.5vw, 28px); font-weight: 900; margin-bottom: 10px; }
+    .cta-section p { color: var(--t2); font-size: 15px; margin-bottom: 24px; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #7c3aed, #6d28d9); color: #fff; font-weight: 700; font-size: 15px; padding: 14px 28px; border-radius: 10px; text-decoration: none; box-shadow: 0 4px 20px var(--glow); }
+
+    footer { border-top: 1px solid var(--border); padding: 28px 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; max-width: 1100px; margin: 0 auto; font-size: 13px; color: var(--t3); }
+    footer a { color: var(--t3); text-decoration: none; }
+    footer a:hover { color: var(--t2); }
+
+    @media (max-width: 600px) {
+      section { padding: 40px 20px; }
+      .stats-row { flex-direction: column; }
+      footer { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/"><div class="nav-logo-icon">⚡</div>Hookify</a>
+  <a class="nav-cta" href="/#pricing">Try Hookify Free</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">🧰 Free Tool</div>
+  <h1>LinkedIn Post Length<br>& <span>"See More" Checker</span></h1>
+  <p class="hero-sub">Paste your post below. See your character count against LinkedIn's 3,000 limit, and exactly where the "See more" cutoff will truncate it in the feed.</p>
+</div>
+
+<div class="tool-wrap">
+  <textarea id="postInput" placeholder="Paste your LinkedIn post here…"></textarea>
+
+  <div class="stats-row">
+    <div class="stat-chip" id="charChip">
+      <div class="num" id="charCount">0</div>
+      <div class="label">Characters / 3,000</div>
+    </div>
+    <div class="stat-chip" id="cutoffChip">
+      <div class="num" id="cutoffCount">0</div>
+      <div class="label">Characters before "See more"</div>
+    </div>
+  </div>
+
+  <div class="preview-label">Feed preview (desktop cutoff ~210 characters)</div>
+  <div class="li-preview">
+    <div class="li-preview-head">
+      <div class="li-avatar"></div>
+      <div>
+        <div class="li-name">Your Name</div>
+        <div class="li-sub">Your headline · now</div>
+      </div>
+    </div>
+    <div class="li-body" id="liBody">Your post preview will appear here as you type.</div>
+    <div class="li-more" id="liMore"></div>
+  </div>
+</div>
+
+<section id="faq">
+  <div class="section-title">FAQ</div>
+  <div class="faq-list">
+    <div class="faq-item">
+      <h3>What is LinkedIn's character limit for posts?</h3>
+      <p>LinkedIn allows up to 3,000 characters per post. If you go over, the post won't publish until you cut it down.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Where does LinkedIn's "See more" cutoff happen?</h3>
+      <p>On desktop, LinkedIn truncates posts and shows "See more" after roughly 210 characters. On mobile, the cutoff is shorter, typically around 140 characters. The exact number can vary slightly by LinkedIn's current layout.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Why does the "See more" cutoff matter?</h3>
+      <p>Everything before the cutoff is what people see in their feed before deciding whether to click "See more" and read the rest. A weak first line means most of your audience never reads past it.</p>
+    </div>
+  </div>
+</section>
+
+<div class="cta-section">
+  <h2>Want AI to write the hook for you?</h2>
+  <p>Hookify writes LinkedIn posts, Twitter threads, and Instagram captions with an opening line designed to survive the cutoff. 5 free conversions, no card required.</p>
+  <a class="btn-primary" href="/#pricing">Try Hookify Free →</a>
+</div>
+
+<footer>
+  <div><a href="/">⚡ Hookify</a> &nbsp;·&nbsp; AI Social Media Content Converter</div>
+  <div style="display:flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
+    <a href="/#faq">FAQ</a>
+    <a href="/guide.html">Usage Guide</a>
+    <a href="/hookify-vs-kleo.html">vs Kleo</a>
+    <a href="/hookify-vs-ligo.html">vs LiGo</a>
+    <a href="/privacy.html">Privacy Policy</a>
+    <a href="mailto:aydinticaret00@gmail.com">Support</a>
+  </div>
+  <div>© 2026 Hookify.</div>
+</footer>
+
+<script>
+const DESKTOP_CUTOFF = 210;
+const MAX_CHARS = 3000;
+const input = document.getElementById('postInput');
+const charCount = document.getElementById('charCount');
+const charChip = document.getElementById('charChip');
+const cutoffCount = document.getElementById('cutoffCount');
+const cutoffChip = document.getElementById('cutoffChip');
+const liBody = document.getElementById('liBody');
+const liMore = document.getElementById('liMore');
+
+function escapeHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function render() {
+  const text = input.value;
+  const len = text.length;
+
+  charCount.textContent = len.toLocaleString();
+  charChip.className = 'stat-chip ' + (len > MAX_CHARS ? 'danger' : len > MAX_CHARS * 0.9 ? 'warn' : 'ok');
+
+  const shownBeforeCutoff = Math.min(len, DESKTOP_CUTOFF);
+  cutoffCount.textContent = shownBeforeCutoff.toLocaleString();
+  cutoffChip.className = 'stat-chip ' + (len <= DESKTOP_CUTOFF ? 'ok' : 'warn');
+
+  if (!text) {
+    liBody.textContent = 'Your post preview will appear here as you type.';
+    liMore.textContent = '';
+    return;
+  }
+
+  if (len <= DESKTOP_CUTOFF) {
+    liBody.innerHTML = escapeHtml(text);
+    liMore.textContent = '';
+  } else {
+    const visible = text.slice(0, DESKTOP_CUTOFF);
+    const hidden = text.slice(DESKTOP_CUTOFF);
+    liBody.innerHTML = escapeHtml(visible) + '<span class="cut">' + escapeHtml(hidden.slice(0, 1)) + '</span>';
+    liMore.textContent = '…see more';
+  }
+}
+
+input.addEventListener('input', render);
+render();
+</script>
+
+</body>
+</html>
