@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Instagram Caption Generator Chrome Extension — Hookify</title>
+  <meta name="description" content="Turn any text into an engaging Instagram caption from your browser. Right-click on any webpage, pick a tone, and get a publish-ready caption in seconds. Free to try.">
+  <meta name="keywords" content="Instagram caption generator chrome extension, AI Instagram caption generator, right-click Instagram caption tool, convert text to Instagram caption, Instagram content generator extension">
+  <meta name="author" content="Hookify">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="favicon-48.png">
+  <link rel="apple-touch-icon" href="favicon-128.png">
+  <link rel="canonical" href="https://usehookify.net/instagram-caption-generator-chrome-extension.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://usehookify.net/instagram-caption-generator-chrome-extension.html">
+  <meta property="og:title" content="Instagram Caption Generator Chrome Extension — Hookify">
+  <meta property="og:description" content="Turn any text into an engaging Instagram caption from your browser. Right-click, pick a tone, publish. Free to try.">
+  <meta property="og:image" content="https://usehookify.net/og-image.png">
+  <meta property="og:site_name" content="Hookify">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Instagram Caption Generator Chrome Extension — Hookify">
+  <meta name="twitter:image" content="https://usehookify.net/og-image.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Can Hookify write Instagram captions in different tones?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Choose Professional, Casual, Story, or Bold, and Hookify writes a caption matched to that tone from any text you provide." } },
+      { "@type": "Question", "name": "Does it work for Instagram comments too?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Hookify's comment suggestion mode also covers Instagram, generating a genuine, on-brand reply to someone else's post." } },
+      { "@type": "Question", "name": "Can I generate a caption from a product description or article?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Paste or select any text — a product page, an article, notes — choose Instagram as the format, and Hookify rewrites it as a caption." } }
+    ]
+  }
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --primary: #7c3aed; --primary2: #6d28d9; --glow: rgba(124,58,237,.35);
+      --bg: #0d0d14; --surface: #161624; --elevated: #1e1e30; --border: #2a2a42;
+      --t1: #f1f5f9; --t2: #94a3b8; --t3: #64748b; --success: #10b981;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--t1); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, system-ui, sans-serif; line-height: 1.6; overflow-x: hidden; }
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(13,13,20,.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 60px; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; font-size: 18px; font-weight: 800; letter-spacing: -.4px; text-decoration: none; color: var(--t1); }
+    .nav-logo-icon { width: 32px; height: 32px; background: linear-gradient(135deg, #7c3aed, #3b82f6); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+    .nav-cta { background: var(--primary); color: #fff; font-weight: 700; font-size: 13px; padding: 9px 20px; border-radius: 8px; text-decoration: none; }
+    .nav-cta:hover { background: var(--primary2); }
+    .hero { text-align: center; padding: 80px 24px 50px; position: relative; }
+    .hero::before { content: ''; position: absolute; top: -120px; left: 50%; transform: translateX(-50%); width: 700px; height: 700px; background: radial-gradient(circle, rgba(124,58,237,.18) 0%, transparent 70%); pointer-events: none; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(124,58,237,.12); border: 1px solid rgba(124,58,237,.3); border-radius: 20px; padding: 5px 14px; font-size: 12px; font-weight: 700; color: #c4b5fd; letter-spacing: .5px; text-transform: uppercase; margin-bottom: 28px; }
+    .hero h1 { font-size: clamp(30px, 5vw, 48px); font-weight: 900; letter-spacing: -1px; line-height: 1.15; margin-bottom: 18px; max-width: 780px; margin-left: auto; margin-right: auto; }
+    .hero h1 span { background: linear-gradient(135deg, #7c3aed, #60a5fa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero-sub { font-size: 17px; color: var(--t2); max-width: 600px; margin: 0 auto 32px; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #7c3aed, #6d28d9); color: #fff; font-weight: 700; font-size: 15px; padding: 14px 28px; border-radius: 10px; text-decoration: none; box-shadow: 0 4px 20px var(--glow); }
+    section { padding: 60px 24px; max-width: 1000px; margin: 0 auto; }
+    .section-title { font-size: clamp(24px, 3.5vw, 34px); font-weight: 900; letter-spacing: -.5px; text-align: center; margin-bottom: 12px; }
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+    .step { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 24px; }
+    .step-num { width: 32px; height: 32px; background: var(--primary); border-radius: 9px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 900; color: #fff; margin-bottom: 14px; }
+    .step h3 { font-size: 15px; margin-bottom: 6px; }
+    .step p { font-size: 13.5px; color: var(--t2); }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 22px; }
+    .card .icon { font-size: 22px; margin-bottom: 10px; }
+    .card h3 { font-size: 14.5px; margin-bottom: 6px; }
+    .card p { font-size: 13.5px; color: var(--t2); }
+    .faq-list { display: flex; flex-direction: column; gap: 12px; }
+    .faq-item { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px 24px; }
+    .faq-item h3 { font-size: 15px; margin-bottom: 8px; }
+    .faq-item p { font-size: 14px; color: var(--t2); }
+    .cta-section { text-align: center; background: linear-gradient(135deg, rgba(124,58,237,.12) 0%, rgba(59,130,246,.08) 100%); border: 1px solid rgba(124,58,237,.2); border-radius: 24px; padding: 56px 24px; margin: 0 24px 70px; }
+    .cta-section h2 { font-size: clamp(24px, 3.5vw, 32px); font-weight: 900; margin-bottom: 12px; }
+    .cta-section p { color: var(--t2); font-size: 15px; margin-bottom: 28px; }
+    footer { border-top: 1px solid var(--border); padding: 28px 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; max-width: 1100px; margin: 0 auto; font-size: 13px; color: var(--t3); }
+    footer a { color: var(--t3); text-decoration: none; }
+    footer a:hover { color: var(--t2); }
+    @media (max-width: 600px) { .hero { padding: 50px 20px 40px; } section { padding: 40px 20px; } footer { flex-direction: column; text-align: center; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/"><div class="nav-logo-icon">⚡</div>Hookify</a>
+  <a class="nav-cta" href="/#pricing">Try Hookify Free</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">📸 For Instagram</div>
+  <h1>Turn Any Text Into an<br><span>Instagram Caption</span><br>In One Click</h1>
+  <p class="hero-sub">Select text on any webpage, right-click, and Hookify writes an engaging Instagram caption in your voice — professional, casual, story, or bold.</p>
+  <a class="btn-primary" href="/#pricing">🚀 Try Free — 5 conversions</a>
+</div>
+
+<section>
+  <div class="section-title">How it works for Instagram</div>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><h3>Select any text</h3><p>A product description, a blog post, notes about your day — anything worth captioning.</p></div>
+    <div class="step"><div class="step-num">2</div><h3>Right-click → Hookify</h3><p>Choose Instagram as your format and pick the tone that fits the post.</p></div>
+    <div class="step"><div class="step-num">3</div><h3>Copy and post</h3><p>Get an engaging, platform-appropriate caption ready to paste under your photo or reel.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="section-title">Built for how people actually use Instagram</div>
+  <div class="cards">
+    <div class="card"><div class="icon">🎭</div><h3>4 Tone Modes</h3><p>Professional, Casual, Story, or Bold — match the caption to your brand and audience.</p></div>
+    <div class="card"><div class="icon">✨</div><h3>Hook Lab</h3><p>Get 3 alternative opening lines for your caption so the first sentence actually grabs attention.</p></div>
+    <div class="card"><div class="icon">🎨</div><h3>Visual Prompt Generator</h3><p>Get a ready-made Midjourney or DALL-E prompt to match your caption's theme.</p></div>
+    <div class="card"><div class="icon">🎤</div><h3>Automatic Brand Voice</h3><p>Paste a few of your past captions once — Hookify learns your tone for every caption after that.</p></div>
+    <div class="card"><div class="icon">💬</div><h3>Comment Suggestions</h3><p>Reacting to someone else's post? Get a genuine, on-brand Instagram comment in one click.</p></div>
+    <div class="card"><div class="icon">📅</div><h3>Content Planning</h3><p>Tag drafts with a date and status so you always know what's going out next.</p></div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="section-title">FAQ</div>
+  <div class="faq-list">
+    <div class="faq-item"><h3>Can Hookify write Instagram captions in different tones?</h3><p>Yes. Choose Professional, Casual, Story, or Bold, and Hookify writes a caption matched to that tone from any text you provide.</p></div>
+    <div class="faq-item"><h3>Does it work for Instagram comments too?</h3><p>Yes. Hookify's comment suggestion mode also covers Instagram, generating a genuine, on-brand reply to someone else's post.</p></div>
+    <div class="faq-item"><h3>Can I generate a caption from a product description or article?</h3><p>Yes. Paste or select any text — a product page, an article, notes — choose Instagram as the format, and Hookify rewrites it as a caption.</p></div>
+  </div>
+</section>
+
+<div class="cta-section">
+  <h2>Write engaging Instagram captions in seconds</h2>
+  <p>5 free AI conversions, no credit card required.</p>
+  <a class="btn-primary" href="/#pricing">Get Started Free →</a>
+</div>
+
+<footer>
+  <div><a href="/">⚡ Hookify</a> &nbsp;·&nbsp; AI Social Media Content Converter</div>
+  <div style="display:flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
+    <a href="/#faq">FAQ</a>
+    <a href="/guide.html">Usage Guide</a>
+    <a href="/hookify-vs-kleo.html">vs Kleo</a>
+    <a href="/hookify-vs-ligo.html">vs LiGo</a>
+    <a href="/linkedin-post-length-checker.html">Free Tool</a>
+    <a href="/privacy.html">Privacy Policy</a>
+  </div>
+  <div>© 2026 Hookify.</div>
+</footer>
+
+</body>
+</html>
